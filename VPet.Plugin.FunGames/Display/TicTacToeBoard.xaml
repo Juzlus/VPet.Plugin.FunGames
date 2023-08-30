@@ -1,0 +1,107 @@
+<pu:WindowX x:Class="VPet.Plugin.FunGames.TicTacToeBoard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:ll="clr-namespace:LinePutScript.Localization.WPF;assembly=LinePutScript.Localization.WPF"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" ResizeMode="NoResize"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" ShowInTaskbar="False"
+        xmlns:pu="https://opensource.panuon.com/wpf-ui" xmlns:local="clr-namespace:VPet.Plugin.FunGames"
+        mc:Ignorable="d" Title="TicTacToe" AllowsTransparency="True" WindowStyle="None" Background="Transparent"
+        Height="260" Width="201" FontSize="14" pu:WindowXCaption.Height="0" pu:WindowXCaption.Buttons="Close"
+        Topmost="True" MouseDown="WindowMouseDown" MouseMove="WindowMouseMove">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="-1" />
+    </WindowChrome.WindowChrome>
+    <FrameworkElement.Resources>
+        <FontFamily x:Key="CHAWP">/VPet.Plugin.FunGames;Component/Font/#CHAWP</FontFamily>
+        <Style x:Key="CustomButtonStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="{DynamicResource CHAWP}" />
+            <Setter Property="FontSize" Value="40" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="Foreground" Value="#d5d5d5" />
+            <Setter Property="Background" Value="#02000000" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <ContentPresenter x:Name="MyContentPresenter" 
+                                          Content="{TemplateBinding Content}"
+                                          Margin="3,-16,-3,-4"
+                                          Width="NaN"
+                                />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#02000000" />
+                    <Setter Property="Cursor" Value="Hand" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CustomTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource CHAWP}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="#d5d5d5" />
+            <Setter Property="Background" Value="#02000000" />
+        </Style>
+    </FrameworkElement.Resources>
+    <Grid>
+        <Image Source="/VPet.Plugin.FunGames;Component/Image/BoardTicTacToe.png" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="BoardTicTacToe" Margin="0,0,0,0"/>
+        <TextBlock Name="PlayerScore" Style="{StaticResource CustomTextBlockStyle}" RenderTransformOrigin="0.5,0.5" Margin="49,20,-49,-20">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-4.601"/>
+                    <TranslateTransform X="0.407" Y="-2.748"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>You: 0</TextBlock>
+        <TextBlock Name="ComputerScore" TextAlignment="Right" Style="{StaticResource CustomTextBlockStyle}" RenderTransformOrigin="0.5,0.5" Margin="-39,25,39,-24">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-5.043"/>
+                    <TranslateTransform X="-0.363" Y="2.746"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>Vpet: 0</TextBlock>
+        <Grid RenderTransformOrigin="0.5,0.5" Margin="-11,0,11,0">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-2.859"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="27"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="27"/>
+                <ColumnDefinition Width="27"/>
+                <ColumnDefinition Width="27"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Name="Button00" Grid.Column="2" Click="PlayerMove" Content="X" Style="{StaticResource CustomButtonStyle}" Margin="4,7,-6,-7" Grid.Row="2"/>
+            <Button Name="Button01" Grid.Row="2" Grid.Column="2" Click="PlayerMove" Content="o" Style="{StaticResource CustomButtonStyle}" Margin="46,6,-46,-6"/>
+            <Button Name="Button02" Grid.Row="2" Grid.Column="2" Click="PlayerMove" Content="X" Style="{StaticResource CustomButtonStyle}" Margin="86,5,-86,-5"/>
+
+            <Button Name="Button10" Grid.Row="2" Grid.Column="2" Click="PlayerMove" Content="O" Style="{StaticResource CustomButtonStyle}" Margin="8,48,-8,-48"/>
+            <Button Name="Button11" Grid.Row="2" Grid.Column="2" Click="PlayerMove" Content="X" Style="{StaticResource CustomButtonStyle}" Margin="47,47,-47,-47"/>
+            <Button Name="Button12" Grid.Row="2" Grid.Column="2" Click="PlayerMove" Content="O" Style="{StaticResource CustomButtonStyle}" Margin="86,47,-86,-47"/>
+
+            <Button Name="Button20" Grid.Row="2" Grid.Column="2" Click="PlayerMove" Content="O" Style="{StaticResource CustomButtonStyle}" Margin="8,90,-8,-90"/>
+            <Button Name="Button21" Grid.Row="2" Grid.Column="2" Click="PlayerMove" Content="O" Style="{StaticResource CustomButtonStyle}" Margin="48,89,-48,-89"/>
+            <Button Name="Button22" Grid.Row="2" Grid.Column="2" Click="PlayerMove" Content="X" Style="{StaticResource CustomButtonStyle}" Margin="88,88,-88,-88"/>
+
+            <Button Name="RestartB" Grid.Row="2" Width="Auto" Padding="-3" Height="auto" Grid.Column="2" Click="RestartButton" FontSize="12" Content="Restart" Style="{StaticResource CustomButtonStyle}" Margin="10,156,-35,-129"/>
+            <Button Name="ExitB" Grid.Row="2" Grid.Column="2" Width="Auto" Height="auto" Padding="-3" Click="ExitButton" FontSize="12" Content="Exit" Style="{StaticResource CustomButtonStyle}" Margin="0,156,-77,-129" HorizontalAlignment="Right"/>
+        </Grid>
+    </Grid>
+</pu:WindowX>

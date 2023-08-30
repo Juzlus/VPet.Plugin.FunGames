@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4D2F4D09-640B-45D8-903C-003350622F8F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VPet.Plugin.FunGames</RootNamespace>
+    <AssemblyName>VPet.Plugin.FunGames</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Dialogue.cs" />
+    <Compile Include="Display\HangmanBoard.xaml.cs">
+      <DependentUpon>HangmanBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Display\TicTacToeBoard.xaml.cs">
+      <DependentUpon>TicTacToeBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FunGames.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VPet-Simulator.Core\VPet-Simulator.Core.csproj">
+      <Project>{7bd4cb1d-c8f3-4349-9bf0-cd11789130ba}</Project>
+      <Name>VPet-Simulator.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VPet-Simulator.Windows.Interface\VPet-Simulator.Windows.Interface.csproj">
+      <Project>{dcad838a-1a02-4bdf-962c-fd47c6006d28}</Project>
+      <Name>VPet-Simulator.Windows.Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Facepunch.Steamworks.Win32">
+      <HintPath>..\packages\Facepunch.Steamworks.win32.2.3.3\lib\net46\Facepunch.Steamworks.Win32.dll</HintPath>
+    </Reference>
+    <Reference Include="Facepunch.Steamworks.Win64">
+      <HintPath>..\packages\Facepunch.Steamworks.2.3.3\lib\net46\Facepunch.Steamworks.Win64.dll</HintPath>
+    </Reference>
+    <Reference Include="LinePutScript">
+      <HintPath>..\packages\LinePutScript.1.9.2\lib\net462\LinePutScript.dll</HintPath>
+    </Reference>
+    <Reference Include="LinePutScript.Localization.WPF">
+      <HintPath>..\packages\LinePutScript.Localization.WPF.1.0.6\lib\net462\LinePutScript.Localization.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Panuon.WPF">
+      <HintPath>..\packages\Panuon.WPF.1.0.2\lib\net462\Panuon.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Panuon.WPF.UI">
+      <HintPath>..\packages\Panuon.WPF.UI.1.1.15.5\lib\net462\Panuon.WPF.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Display\HangmanBoard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Display\TicTacToeBoard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\BoardTicTacToe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Font\CHAWP.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Audio\chalk.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Image\Hook_phase_1.png" />
+    <EmbeddedResource Include="Image\Hook_phase_2.png" />
+    <EmbeddedResource Include="Image\Hook_phase_3.png" />
+    <EmbeddedResource Include="Image\Hook_phase_4.png" />
+    <EmbeddedResource Include="Image\Hook_phase_5.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

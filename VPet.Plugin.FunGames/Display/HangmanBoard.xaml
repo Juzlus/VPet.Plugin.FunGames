@@ -1,0 +1,116 @@
+<pu:WindowX x:Class="VPet.Plugin.FunGames.HangmanBoard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:ll="clr-namespace:LinePutScript.Localization.WPF;assembly=LinePutScript.Localization.WPF"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" ResizeMode="NoResize"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" ShowInTaskbar="False"
+        xmlns:pu="https://opensource.panuon.com/wpf-ui" xmlns:local="clr-namespace:VPet.Plugin.FunGames"
+        mc:Ignorable="d" Title="TicTacToe" AllowsTransparency="True" WindowStyle="None" Background="Transparent"
+        Height="466.75" Width="256" FontSize="14" pu:WindowXCaption.Height="0" pu:WindowXCaption.Buttons="Close"
+        Topmost="True" MouseDown="WindowMouseDown" MouseMove="WindowMouseMove">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="-1" />
+    </WindowChrome.WindowChrome>
+	<FrameworkElement.Resources>
+		<ControlTemplate x:Key="BorderedStackPanelTemplate" TargetType="{x:Type ContentControl}">
+			<Border Background="{DynamicResource SecondaryLighter}" BorderBrush="{DynamicResource Secondary}"
+					BorderThickness="3" VerticalAlignment="Top" Margin="0,0,0,0" CornerRadius="5" Padding="2">
+				<ContentPresenter Content="{TemplateBinding Content}" />
+			</Border>
+		</ControlTemplate>
+
+		<Style x:Key="WordLetters" TargetType="Button">
+			<Setter Property="FontSize" Value="15" />
+			<Setter Property="Width" Value="25" />
+			<Setter Property="IsEnabled" Value="False" />
+			<Setter Property="Margin" Value="3, 0, 3, 0" />
+			<Setter Property="VerticalAlignment" Value="Top" />
+			<Setter Property="Foreground" Value="#039be5" />
+
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<Border BorderBrush="#039be5" BorderThickness="1" CornerRadius="3" Background="#cbe4f9">
+								<ContentPresenter x:Name="MyContentPresenter"
+												  Content="{TemplateBinding Content}"
+												  VerticalAlignment="Center"
+												  HorizontalAlignment="Center"
+												  TextBlock.TextAlignment="Center"
+                                      />
+							</Border>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="inCorrectWordLetters" TargetType="Button">
+			<Setter Property="FontSize" Value="15" />
+			<Setter Property="Width" Value="25" />
+			<Setter Property="Height" Value="25" />
+			<Setter Property="IsEnabled" Value="False" />
+			<Setter Property="Margin" Value="3, 0, 3, 0" />
+			<Setter Property="VerticalAlignment" Value="Bottom" />
+			<Setter Property="Foreground" Value="#d90000" />
+			
+			<Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+							<Border BorderBrush="Red" BorderThickness="1" CornerRadius="3" Background="#ffacac">
+								<ContentPresenter x:Name="MyContentPresenter"
+												  Content="{TemplateBinding Content}"
+												  VerticalAlignment="Center"
+												  HorizontalAlignment="Center"
+												  TextBlock.TextAlignment="Center"
+                                      />
+							</Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+		</Style>
+	</FrameworkElement.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="369.75"/>
+			<RowDefinition Height="30" />
+			<RowDefinition Height="35"/>
+			<RowDefinition Height="32"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<Image Width="Auto" Grid.Row="0" Grid.ColumnSpan="5" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Hook_phase" Margin="0,0,0,0"/>
+		<ContentControl Template="{StaticResource BorderedStackPanelTemplate}" Grid.Row="2" Grid.ColumnSpan="5" HorizontalAlignment="Center">
+			<StackPanel Orientation="Horizontal">
+				<TextBox x:Name="tbTalk" Style="{DynamicResource StandardTextBoxStyle}" Height="25" Width="25" FontSize="15" Margin="5, 0, 5, 0" Padding="0, 1.5, 0, 0"
+						HorizontalAlignment="Center" MaxLength="1" AcceptsReturn="True" TextWrapping="WrapWithOverflow"
+						PreviewKeyDown="tbTalk_KeyDown" TextChanged="tbTalk_TextChanged" TextAlignment="Left" />
+				<Button Name="SendButton" pu:ButtonHelper.CornerRadius="4" Content="Send" BorderThickness="2" Margin="5, 0, 5, 0"
+						Background="{DynamicResource PrimaryLight}" Height="25" Width="Auto" FontSize="15"
+						BorderBrush="{DynamicResource DARKPrimaryDarker}" Click="SendMessage_Click" />
+				<Button Name="RestartButton" pu:ButtonHelper.CornerRadius="4" Content="Restart" BorderThickness="2" Height="25" Width="Auto" FontSize="15" Margin="5, 0, 5, 0"
+						Background="{DynamicResource PrimaryLight}"
+						BorderBrush="{DynamicResource DARKPrimaryDarker}" Click="Restart_Click" />
+				<Button Name="ExitButton" pu:ButtonHelper.CornerRadius="4" Content="Exit" BorderThickness="2" Height="25" Width="Auto" FontSize="15" Margin="5, 0, 5, 0"
+						Background="{DynamicResource PrimaryLight}"
+						BorderBrush="{DynamicResource DARKPrimaryDarker}" Click="Exit_Click" />
+			</StackPanel>
+		</ContentControl>
+		<StackPanel Name="ChosenWordLabel" Grid.Row="1" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Center">
+			<Button Content="?" Style="{DynamicResource WordLetters}"></Button>
+			<Button Content="?" Style="{DynamicResource WordLetters}"></Button>
+			<Button Content="?" Style="{DynamicResource WordLetters}"></Button>
+		</StackPanel>
+		<StackPanel Name="inCorrectWordLabel" Grid.Row="3" Grid.ColumnSpan="5" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+			<Button Content="?" Style="{DynamicResource inCorrectWordLetters}"></Button>
+			<Button Content="?" Style="{DynamicResource inCorrectWordLetters}"></Button>
+			<Button Content="?" Style="{DynamicResource inCorrectWordLetters}"></Button>
+		</StackPanel>
+	
+</Grid>
+</pu:WindowX>
