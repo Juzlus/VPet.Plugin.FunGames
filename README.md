@@ -3,7 +3,9 @@
 # About
 <img src="https://steamuserimages-a.akamaihd.net/ugc/2012600514533380250/0E120E2D43B9D754D25A572A31BFE539BFD80571/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" align="right" width="150px"/>
 
-New fun games!!. [Page on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3027915926).
+_Dive into the world of classic games._ 🎮 [Page on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3027915926).
+<br>
+This modification includes classic games such as:
 - Tic-Tac-Toe
 - Hangman
 
@@ -11,10 +13,8 @@ New fun games!!. [Page on Steam Workshop](https://steamcommunity.com/sharedfiles
 ## Screenshots
 
 ![Menu Panel](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394956/6FACC038BB301D8DBB51CF82EE55C3D0D51E22DB/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
-![Tic-Tac-Toe 1](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394965/9A79033074F229F5E78C99ECB9033C4C52AD4CEF/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
-![Tic-Tac-Toe 2](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394974/55F04E66CE200D0F803E76217B0A5476519277D3/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
-![Hangman 1](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394981/AC2BFEF440276BF08EF7DAF140950D87FED4E12D/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
-![Hangman 2](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394990/F4BE635F081ECBF2E042D3F2B5DDE8465CDC3882/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
+![Tic-Tac-Toe](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394974/55F04E66CE200D0F803E76217B0A5476519277D3/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
+![Hangman](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394981/AC2BFEF440276BF08EF7DAF140950D87FED4E12D/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
 
 
 ## CHANGELOG
