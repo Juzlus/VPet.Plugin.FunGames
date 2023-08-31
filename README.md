@@ -1,28 +1,26 @@
 
 
 # About
-<img src="https://steamuserimages-a.akamaihd.net/ugc/2012599246957698852/7DF3A03BECF939FEBC84435AAAB71D7C3896BEA1/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true" align="right" width="150px"/>
+<img src="https://steamuserimages-a.akamaihd.net/ugc/2012600514533380250/0E120E2D43B9D754D25A572A31BFE539BFD80571/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" align="right" width="150px"/>
 
-Polish language pack for VPet-Simulator. [Page on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3022291134).
+_Dive into the world of classic games._ 🎮 [Page on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3027915926).
 <br>
-The language pack also includes the Polish language for the following modifications:
-- [EdgeTTS](https://steamcommunity.com/sharedfiles/filedetails/?id=3018320779&searchtext=EdgeTTS)
-- [DemoClock](https://steamcommunity.com/sharedfiles/filedetails/?id=2980456794&searchtext=democlock)
+This modification includes classic games such as:
+- Tic-Tac-Toe
+- Hangman
 
 
 ## Screenshots
 
-![Settings Panel](https://steamuserimages-a.akamaihd.net/ugc/2012599246957745423/D5CBC60ED7C7DFA25BBC14CBCD185E9F533AEEF9/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true)
-![Chat Box](https://steamuserimages-a.akamaihd.net/ugc/2012599246957745429/6BD50073CF9C68BC302BF2FE4DB8C13BF0DB8DA2/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true)
+![Menu Panel](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394956/6FACC038BB301D8DBB51CF82EE55C3D0D51E22DB/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
+![Tic-Tac-Toe](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394974/55F04E66CE200D0F803E76217B0A5476519277D3/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
+![Hangman](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394981/AC2BFEF440276BF08EF7DAF140950D87FED4E12D/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
 
 
 ## CHANGELOG
 
-v 1.1
-- Some fixes and translated Text2309.lps file
-  
 v 1.0
-- Polish language pack added
+- Project start
 
 
 ## Feedback
@@ -44,5 +42,5 @@ If you have any Feedback or questions, please contact me at juzlus.biznes@gmail.
 
 ## Disclaimer
 
-_The VPet.Lang.Polish is an independent project developed by an individual._
+_The VPet.Plugin.FunGames is an independent project developed by an individual._
 
