@@ -17,12 +17,13 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -67,6 +68,17 @@
     <Compile Include="FunGames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Display\HangmanBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Display\TicTacToeBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VPet-Simulator.Core\VPet-Simulator.Core.csproj">
       <Project>{7bd4cb1d-c8f3-4349-9bf0-cd11789130ba}</Project>
@@ -75,6 +87,10 @@
     <ProjectReference Include="..\VPet-Simulator.Windows.Interface\VPet-Simulator.Windows.Interface.csproj">
       <Project>{dcad838a-1a02-4bdf-962c-fd47c6006d28}</Project>
       <Name>VPet-Simulator.Windows.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VPet-Simulator.Windows\VPet-Simulator.Windows.csproj">
+      <Project>{b5c2dd17-735f-4f9f-82e4-b8692aec03f1}</Project>
+      <Name>VPet-Simulator.Windows</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -104,33 +120,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Display\HangmanBoard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Display\TicTacToeBoard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Image\BoardTicTacToe.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Font\CHAWP.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Audio\chalk.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Image\Hook_phase_1.png" />
-    <EmbeddedResource Include="Image\Hook_phase_2.png" />
-    <EmbeddedResource Include="Image\Hook_phase_3.png" />
-    <EmbeddedResource Include="Image\Hook_phase_4.png" />
-    <EmbeddedResource Include="Image\Hook_phase_5.png" />
+    <Resource Include="Image\BoardTicTacToe.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

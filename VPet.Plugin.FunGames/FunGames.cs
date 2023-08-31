@@ -1,10 +1,7 @@
-﻿using LinePutScript.Localization.WPF;
-using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using VPet_Simulator.Core;
+using LinePutScript.Localization.WPF;
 using VPet_Simulator.Windows.Interface;
-using static VPet_Simulator.Core.GraphInfo;
 
 namespace VPet.Plugin.FunGames
 {
@@ -32,22 +29,6 @@ namespace VPet.Plugin.FunGames
         public override void LoadDIY()
         {
             this.CreateMenuButton();
-        }
-
-        public void SendMsg(string msg)
-        {
-            try {
-                this.MW.Main.MsgBar.Show(this.MW.Main.Core.Save.Name, msg.Translate());
-            } catch { };
-        }
-
-        public void PlayAnim(string graphName, AnimatType animatType)
-        {
-            IGraph graph = this.MW.Main.Core.Graph.FindGraph(graphName, animatType, GameSave.ModeType.Happy);
-            if(graph == null) return;
-            this.MW.Main.Display(graph, (Action)(() => {
-                this.MW.Main.DisplayToNomal();
-            }));
         }
 
         private void CreateMenuButton()
@@ -85,14 +66,12 @@ namespace VPet.Plugin.FunGames
                     try
                     {
                         ticTacToeboard.difficulty = gameDifficulty;
-                        ticTacToeboard.mainGames = this;
                         ticTacToeboard.Show();
                     }
                     catch
                     {
-                        ticTacToeboard = new TicTacToeBoard();
+                        ticTacToeboard = new TicTacToeBoard(this.MW);
                         ticTacToeboard.difficulty = gameDifficulty;
-                        ticTacToeboard.mainGames = this;
                         ticTacToeboard.Show();
                     }
                 }
@@ -100,13 +79,11 @@ namespace VPet.Plugin.FunGames
                 {
                     try
                     {
-                        hangmanBoard.mainGames = this;
                         hangmanBoard.Show();
                     }
                     catch
                     {
-                        hangmanBoard = new HangmanBoard();
-                        hangmanBoard.mainGames = this;
+                        hangmanBoard = new HangmanBoard(this.MW);
                         hangmanBoard.Show();
                     }
                 }

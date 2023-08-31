@@ -12,6 +12,7 @@ using System.Media;
 using System.IO;
 using System.Reflection;
 using System.Windows.Media;
+using VPet_Simulator.Windows.Interface;
 
 namespace VPet.Plugin.FunGames
 {
@@ -29,17 +30,20 @@ namespace VPet.Plugin.FunGames
         int computerWins = 0;
 
         string path;
-        public FunGames mainGames;
         DialogueForTicTacToe dialogue = new DialogueForTicTacToe();
 
+        IMainWindow mw;
         SoundPlayer soundPlayer;
         private Brush mainColor = new SolidColorBrush(Color.FromArgb(0xFF, 0xD5, 0xD5, 0xD5));
         private Brush winColor = new SolidColorBrush(Color.FromArgb(0xFF, 0x80, 0xC8, 0x58));
 
-        public TicTacToeBoard()
+        public TicTacToeBoard(IMainWindow mw)
         {
+            this.mw = mw;
             this.InitializeComponent();
-            this.LoadPath();
+            this.path = Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)).FullName;
+            this.soundPlayer = new SoundPlayer(this.path + "\\audio\\chalk.wav");
+
             this.ResetGame();
 
             RestartB.Content = "Restart".Translate();
@@ -67,7 +71,7 @@ namespace VPet.Plugin.FunGames
 
             await Task.Delay(200);
             PlayerScore.Text = "You".Translate() + ": " + this.playerWins.ToString();
-            ComputerScore.Text = this.mainGames?.MW?.Core?.Save?.Name + ": " + this.computerWins.ToString();
+            ComputerScore.Text = this.mw?.Core?.Save?.Name + ": " + this.computerWins.ToString();
         }
 
         private void PlayerMove(object sender, RoutedEventArgs e)
@@ -164,7 +168,7 @@ namespace VPet.Plugin.FunGames
                 DisableAllActiveButtons(true);
                 SendRandomMsg(dialogue.win, 0.4);
                 this.computerWins++;
-                ComputerScore.Text = this.mainGames.MW.Core.Save.Name + ": " + this.computerWins.ToString();
+                ComputerScore.Text = this.mw.Core.Save.Name + ": " + this.computerWins.ToString();
             }
         }
 
@@ -193,16 +197,6 @@ namespace VPet.Plugin.FunGames
                 b2.Foreground = winColor;
                 b3.Foreground = winColor;
             }
-        }
-
-        private void LoadPath()
-        {
-            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
-                if (assembly.GetName().Name == "VPet.Plugin.FunGames")
-                {
-                    path = Directory.GetParent(Path.GetDirectoryName(assembly.Location)).FullName;
-                    soundPlayer = new SoundPlayer(path + "\\audio\\chalk.wav");
-                }
         }
 
         private void PlaySFX()
@@ -256,15 +250,21 @@ namespace VPet.Plugin.FunGames
             string msgContent = dialogue[index];
             if(msgContent == null) return;
 
-            try {
-                this.mainGames?.SendMsg(msgContent);
-            } catch { };
+            try
+            {
+                this.mw.Main.MsgBar.Show(this.mw.Main.Core.Save.Name, msgContent.Translate());
+            }
+            catch { };
         }
 
         private void PlayAnimation(string graphName, GraphInfo.AnimatType animatType)
         {
             try {
-                this.mainGames?.PlayAnim(graphName, animatType);
+                IGraph graph = this.mw.Main.Core.Graph.FindGraph(graphName, animatType, GameSave.ModeType.Happy);
+                if (graph == null) return;
+                this.mw.Main.Display(graph, (Action)(() => {
+                    this.mw.Main.DisplayToNomal();
+                }));
             } catch { };
         }
 

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using VPet_Simulator.Core;
+using VPet_Simulator.Windows.Interface;
 
 namespace VPet.Plugin.FunGames
 {
@@ -25,21 +26,18 @@ namespace VPet.Plugin.FunGames
         private int correctChar = 0;
         private List<Button> charButtons = new List<Button>();
 
+        IMainWindow mw;
         SoundPlayer soundPlayer;
-        public FunGames mainGames;
         DialogueForHamgman dialogue = new DialogueForHamgman();
 
-        public HangmanBoard()
+        public HangmanBoard(IMainWindow mw)
         {
+            this.mw = mw;
             this.InitializeComponent();
             this.GetRandomWord();
 
-            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
-                if (assembly.GetName().Name == "VPet.Plugin.FunGames")
-                {
-                    path = Directory.GetParent(System.IO.Path.GetDirectoryName(assembly.Location)).FullName;
-                    soundPlayer = new SoundPlayer(path + "\\audio\\hammer.wav");
-                }
+            this.path = Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)).FullName;
+            this.soundPlayer = new SoundPlayer(this.path + "\\audio\\hammer.wav");
 
             SendButton.Content = "Send".Translate();
             RestartButton.Content = "Restart".Translate();
@@ -62,7 +60,8 @@ namespace VPet.Plugin.FunGames
             this.correctChar = 0;
             int index = this.rand.Next(dialogue.words.Count);
             await Task.Delay(200);
-            this.chosenWord = index >= 0 ? dialogue.words[index].Replace("{Name}", this.mainGames.MW.Main.Core.Save.Name).ToUpper() : "SUN";
+            this.chosenWord = index >= 0 ? dialogue.words[index].Replace("{Name}", this.mw.Main.Core.Save.Name) : "Sun";
+            this.chosenWord = this.chosenWord.Translate().ToUpper();
             this.letters = this.chosenWord.ToCharArray();
 
             this.charButtons.Clear();
@@ -137,8 +136,11 @@ namespace VPet.Plugin.FunGames
                 if(playerLetter == Convert.ToString(c))
                 {
                     this.SendRandomMsg(dialogue.correctChar, 0.15);
-                    this.correctChar++;
-                    charButtons[i].Content = c;
+                    if (charButtons[i].Content.ToString() == "?")
+                    {
+                        this.correctChar++;
+                        charButtons[i].Content = c;
+                    }
                     isAnyCorrect = true;
                 }
                 i++;
@@ -157,7 +159,7 @@ namespace VPet.Plugin.FunGames
 
                 inCorrectWordLabel.Children.Add(newInCorrectLetter);
 
-                string imagePath = path + "\\image\\Hook_phase_" + (5 - this.lives).ToString() + ".png";
+                string imagePath = this.path + "\\image\\Hook_phase_" + (5 - this.lives).ToString() + ".png";
                 BitmapImage image = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
 
                 ImageSource imageSource = image;
@@ -178,7 +180,7 @@ namespace VPet.Plugin.FunGames
 
             try
             {
-                this.mainGames?.SendMsg(msgContent);
+                this.mw.Main.MsgBar.Show(this.mw.Main.Core.Save.Name, msgContent.Translate());
             }
             catch { };
         }
@@ -187,7 +189,11 @@ namespace VPet.Plugin.FunGames
         {
             try
             {
-                this.mainGames?.PlayAnim(graphName, animatType);
+                IGraph graph = this.mw.Main.Core.Graph.FindGraph(graphName, animatType, GameSave.ModeType.Happy);
+                if (graph == null) return;
+                this.mw.Main.Display(graph, (Action)(() => {
+                    this.mw.Main.DisplayToNomal();
+                }));
             }
             catch { };
         }
