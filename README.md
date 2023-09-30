@@ -21,12 +21,11 @@ This modification includes classic games such as:
 
 ## CHANGELOG
 
-v1.0.4 | New games (Millionaire and Minesweeper) and settings added
-v1.0.3 | Fixed a bug that conflicted with the newer version of VPet
-v1.0.2 | Compatibility for EdgeTTS
-v1.0.1 | A few fixes
+v1.0.4 | New games (Millionaire and Minesweeper) and settings added<br>
+v1.0.3 | Fixed a bug that conflicted with the newer version of VPet<br>
+v1.0.2 | Compatibility for EdgeTTS<br>
+v1.0.1 | A few fixes<br>
 v1.0.0 | Project start (Tic-Tac-Toe and Hangman)
-
 
 ## Feedback
 
