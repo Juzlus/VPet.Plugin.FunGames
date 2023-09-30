@@ -1,0 +1,11 @@
+difficulty=1
+rows=16
+cols=16
+mines=40
+cell_size=30
+chance_win=1
+chance_loss=0.4
+chance_start=0.5
+chance_wait=0.05
+isTimerSound=True
+isMarkEnabled=True

@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" ResizeMode="NoResize"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" ShowInTaskbar="False"
         xmlns:pu="https://opensource.panuon.com/wpf-ui" xmlns:local="clr-namespace:VPet.Plugin.FunGames"
-        mc:Ignorable="d" Title="TicTacToe" AllowsTransparency="True" WindowStyle="None" Background="Transparent"
+        mc:Ignorable="d" Title="{ll:Str 'Hangman'}" AllowsTransparency="True" WindowStyle="None" Background="Transparent"
         Height="466.75" Width="256" FontSize="14" pu:WindowXCaption.Height="0" pu:WindowXCaption.Buttons="Close"
         Topmost="True" MouseDown="WindowMouseDown" MouseMove="WindowMouseMove">
     <WindowChrome.WindowChrome>
@@ -89,14 +89,14 @@
 			<StackPanel Orientation="Horizontal">
 				<TextBox x:Name="tbTalk" Style="{DynamicResource StandardTextBoxStyle}" Height="25" Width="25" FontSize="15" Margin="5, 0, 5, 0" Padding="0, 1.5, 0, 0"
 						HorizontalAlignment="Center" MaxLength="1" AcceptsReturn="True" TextWrapping="WrapWithOverflow"
-						PreviewKeyDown="tbTalk_KeyDown" TextChanged="tbTalk_TextChanged" TextAlignment="Left" />
-				<Button Name="SendButton" pu:ButtonHelper.CornerRadius="4" Content="Send" BorderThickness="2" Margin="5, 0, 5, 0"
+						PreviewKeyDown="tbTalk_KeyDown" TextAlignment="Left" />
+				<Button Name="SendButton" pu:ButtonHelper.CornerRadius="4" Content="{ll:Str 'Send'}" BorderThickness="2" Margin="5, 0, 5, 0"
 						Background="{DynamicResource PrimaryLight}" Height="25" Width="Auto" FontSize="15"
 						BorderBrush="{DynamicResource DARKPrimaryDarker}" Click="SendMessage_Click" />
-				<Button Name="RestartButton" pu:ButtonHelper.CornerRadius="4" Content="Restart" BorderThickness="2" Height="25" Width="Auto" FontSize="15" Margin="5, 0, 5, 0"
+				<Button Name="RestartButton" pu:ButtonHelper.CornerRadius="4" Content="{ll:Str 'Restart'}" BorderThickness="2" Height="25" Width="Auto" FontSize="15" Margin="5, 0, 5, 0"
 						Background="{DynamicResource PrimaryLight}"
 						BorderBrush="{DynamicResource DARKPrimaryDarker}" Click="Restart_Click" />
-				<Button Name="ExitButton" pu:ButtonHelper.CornerRadius="4" Content="Exit" BorderThickness="2" Height="25" Width="Auto" FontSize="15" Margin="5, 0, 5, 0"
+				<Button Name="ExitButton" pu:ButtonHelper.CornerRadius="4" Content="{ll:Str 'Exit'}" BorderThickness="2" Height="25" Width="Auto" FontSize="15" Margin="5, 0, 5, 0"
 						Background="{DynamicResource PrimaryLight}"
 						BorderBrush="{DynamicResource DARKPrimaryDarker}" Click="Exit_Click" />
 			</StackPanel>

@@ -1,0 +1,7 @@
+difficulty=1
+chance_win=0.4
+chance_loss=0.4
+chance_draw=0.4
+chance_start=0.4
+chance_wait=0.4
+chance_think=0.1

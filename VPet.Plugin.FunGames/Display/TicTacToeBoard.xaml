@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" ResizeMode="NoResize"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" ShowInTaskbar="False"
         xmlns:pu="https://opensource.panuon.com/wpf-ui" xmlns:local="clr-namespace:VPet.Plugin.FunGames"
-        mc:Ignorable="d" Title="TicTacToe" AllowsTransparency="True" WindowStyle="None" Background="Transparent"
+        mc:Ignorable="d" Title="{ll:Str 'TicTacToe'}" AllowsTransparency="True" WindowStyle="None" Background="Transparent"
         Height="260" Width="201" FontSize="14" pu:WindowXCaption.Height="0" pu:WindowXCaption.Buttons="Close"
         Topmost="True" MouseDown="WindowMouseDown" MouseMove="WindowMouseMove">
     <WindowChrome.WindowChrome>
@@ -100,8 +100,8 @@
             <Button Name="Button21" Grid.Row="2" Grid.Column="2" Click="PlayerMove" Content="O" Style="{StaticResource CustomButtonStyle}" Margin="48,89,-48,-89"/>
             <Button Name="Button22" Grid.Row="2" Grid.Column="2" Click="PlayerMove" Content="X" Style="{StaticResource CustomButtonStyle}" Margin="88,88,-88,-88"/>
 
-            <Button Name="RestartB" Grid.Row="2" Width="Auto" Padding="-3" Height="auto" Grid.Column="2" Click="RestartButton" FontSize="12" Content="Restart" Style="{StaticResource CustomButtonStyle}" Margin="10,156,-35,-129"/>
-            <Button Name="ExitB" Grid.Row="2" Grid.Column="2" Width="Auto" Height="auto" Padding="-3" Click="ExitButton" FontSize="12" Content="Exit" Style="{StaticResource CustomButtonStyle}" Margin="0,156,-77,-129" HorizontalAlignment="Right"/>
+            <Button Name="RestartB" Grid.Row="2" Width="Auto" Padding="-3" Height="auto" Grid.Column="2" Click="RestartButton" FontSize="12" Content="{ll:Str 'Restart'}" Style="{StaticResource CustomButtonStyle}" Margin="10,156,-35,-129"/>
+            <Button Name="ExitB" Grid.Row="2" Grid.Column="2" Width="Auto" Height="auto" Padding="-3" Click="ExitButton" FontSize="12" Content="{ll:Str 'Exit'}" Style="{StaticResource CustomButtonStyle}" Margin="0,156,-77,-129" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
 </pu:WindowX>

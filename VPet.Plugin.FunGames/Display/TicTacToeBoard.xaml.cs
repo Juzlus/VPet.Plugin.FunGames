@@ -8,50 +8,80 @@ using System.Windows.Input;
 using LinePutScript.Localization.WPF;
 using VPet_Simulator.Core;
 using System.Windows.Threading;
-using System.Media;
-using System.IO;
-using System.Reflection;
 using System.Windows.Media;
-using VPet_Simulator.Windows.Interface;
+using System.IO;
 
 namespace VPet.Plugin.FunGames
 {
     public partial class TicTacToeBoard : WindowX
     {
+        private FunGames games = null;
+
+        private int difficulty = 0;
+        private double chance_win = 0.4;
+        private double chance_loss = 0.4;
+        private double chance_draw = 0.4;
+        private double chance_start = 0.4;
+        private double chance_wait = 0.4;
+        private double chance_think = 0.1;
+
         private enum Symbols { X, O };
         private bool isPlayerMove = true;
-        public int difficulty = 0;
+        private int playerWins = 0;
+        private int computerWins = 0;
 
-        Random rand;
-        List<Button> buttons;
+        private Random rand;
+        private List<Button> buttons;
         private DispatcherTimer inactivityTimer;
 
-        int playerWins = 0;
-        int computerWins = 0;
-
-        string path;
-        DialogueForTicTacToe dialogue = new DialogueForTicTacToe();
-
-        IMainWindow mw;
-        SoundPlayer soundPlayer;
+        private DialogueForTicTacToe dialogue = new DialogueForTicTacToe();
         private Brush mainColor = new SolidColorBrush(Color.FromArgb(0xFF, 0xD5, 0xD5, 0xD5));
         private Brush winColor = new SolidColorBrush(Color.FromArgb(0xFF, 0x80, 0xC8, 0x58));
 
-        public TicTacToeBoard(IMainWindow mw)
+        public TicTacToeBoard(FunGames games)
         {
-            this.mw = mw;
+            this.games = games;
+            this.ImportConfig();
             this.InitializeComponent();
-            this.path = Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)).FullName;
-            this.soundPlayer = new SoundPlayer(this.path + "\\audio\\chalk.wav");
-
             this.ResetGame();
-
-            RestartB.Content = "Restart".Translate();
-            ExitB.Content = "Exit".Translate();
 
             this.inactivityTimer = new DispatcherTimer();
             this.inactivityTimer.Interval = TimeSpan.FromSeconds(30);
             this.inactivityTimer.Tick += this.InactivityTimer;
+        }
+
+        private void ImportConfig()
+        {
+            try
+            {
+                string[] lines = File.ReadAllLines(this.games.path + "\\config\\TicTacToe.lps");
+                if (lines.Length <= 0) return;
+
+                foreach (string line in lines)
+                {
+                    string name = line.Split('=')[0];
+                    string value = line.Split('=')[1];
+                    if (name == null || value == null) continue;
+
+                    if (name == "difficulty")
+                        this.difficulty = int.Parse(value);
+                    else if (name == "chance_win")
+                        this.chance_win = double.Parse(value);
+                    else if (name == "chance_loss")
+                        this.chance_loss = double.Parse(value);
+                    else if (name == "chance_draw")
+                        this.chance_draw = double.Parse(value);
+                    else if (name == "chance_start")
+                        this.chance_start = double.Parse(value);
+                    else if (name == "chance_wait")
+                        this.chance_wait = double.Parse(value);
+                    else if (name == "chance_think")
+                        this.chance_think = double.Parse(value);
+                }
+            }
+            catch (IOException e)
+            {
+            }
         }
 
         private async void ResetGame()
@@ -64,14 +94,14 @@ namespace VPet.Plugin.FunGames
                 button.IsEnabled = true;
                 button.Foreground = mainColor;
             }
-            SendRandomMsg(dialogue.start, 0.4);
+            this.games.SendRandomMsg(this.dialogue.start, this.chance_start);
 
             if(!this.isPlayerMove)
                 ComputerMove();
 
             await Task.Delay(200);
             PlayerScore.Text = "You".Translate() + ": " + this.playerWins.ToString();
-            ComputerScore.Text = this.mw?.Core?.Save?.Name + ": " + this.computerWins.ToString();
+            ComputerScore.Text = this.games.MW.Core.Save.Name + ": " + this.computerWins.ToString();
         }
 
         private void PlayerMove(object sender, RoutedEventArgs e)
@@ -79,7 +109,7 @@ namespace VPet.Plugin.FunGames
             this.inactivityTimer.Start();
             Button button = (Button) sender;
             if(button.Content != null || !this.isPlayerMove) return;
-            this.PlaySFX();
+            this.games.PlaySFX(0);
             this.DisableButton(button);
             this.ComputerMove();
         }
@@ -90,11 +120,11 @@ namespace VPet.Plugin.FunGames
             await Task.Delay(2800);
 
             if (this.buttons.Count <= 0) return;
-            this.PlayAnimation("chalking", GraphInfo.AnimatType.Single);
-            SendRandomMsg(dialogue.thinking, 0.1);
+            this.games.PlayAnimation("fungames.chalking", GraphInfo.AnimatType.Single);
+            this.games.SendRandomMsg(this.dialogue.thinking, this.chance_think);
 
             int index = this.rand.Next(this.buttons.Count);
-            this.PlaySFX();
+            this.games.PlaySFX(0);
 
             if (difficulty == 0) {
                 this.DisableButton(this.buttons[index]);
@@ -136,7 +166,7 @@ namespace VPet.Plugin.FunGames
             if(buttons.Count <= 0)
             {
                 DisableAllActiveButtons();
-                SendRandomMsg(dialogue.draw, 0.4);
+                this.games.SendRandomMsg(this.dialogue.draw, this.chance_draw);
             }
             else if (
                 Button00.Content?.ToString() == sX && Button01.Content?.ToString() == sX && Button02.Content?.ToString() == sX
@@ -150,7 +180,7 @@ namespace VPet.Plugin.FunGames
             )
             {
                 DisableAllActiveButtons(true);
-                SendRandomMsg(dialogue.loss, 0.4);
+                this.games.SendRandomMsg(this.dialogue.loss, this.chance_loss);
                 this.playerWins++;
                 PlayerScore.Text = "You".Translate() + ": " + this.playerWins.ToString();
             }
@@ -166,9 +196,9 @@ namespace VPet.Plugin.FunGames
             )
             {
                 DisableAllActiveButtons(true);
-                SendRandomMsg(dialogue.win, 0.4);
+                this.games.SendRandomMsg(this.dialogue.win, this.chance_win);
                 this.computerWins++;
-                ComputerScore.Text = this.mw.Core.Save.Name + ": " + this.computerWins.ToString();
+                ComputerScore.Text = this.games.MW.Core.Save.Name + ": " + this.computerWins.ToString();
             }
         }
 
@@ -199,29 +229,25 @@ namespace VPet.Plugin.FunGames
             }
         }
 
-        private void PlaySFX()
-        {
-            try {
-                this.soundPlayer.Play();
-            } catch { }
-        }
-
         private void InactivityTimer(object sender, EventArgs e)
         {
             this.inactivityTimer.Stop();
+            if (this.games.ticTacToeboard == null) return;
+            this.games.SendRandomMsg(this.dialogue.waiting, this.chance_wait);
             this.inactivityTimer.Start();
-            this.SendRandomMsg(dialogue.waiting, 0.4);
         }
 
         private void RestartButton(object sender, RoutedEventArgs e)
         {
-            this.PlaySFX();
+            this.games.PlaySFX(0);
             this.ResetGame();
-        }
+        } 
         
         private void ExitButton(object sender, RoutedEventArgs e)
         {
-            this.PlaySFX();
+            this.games.PlaySFX(0);
+            this.games.ticTacToeboard = (TicTacToeBoard) null;
+            this.inactivityTimer.Stop();
             this.Close();
         }
 
@@ -239,33 +265,6 @@ namespace VPet.Plugin.FunGames
             {
                 this.DragMove();
             }
-        }
-
-        private void SendRandomMsg(List<string> dialogue, double chance)
-        {
-            if(rand.NextDouble() < 1 - chance) return;
-
-            int index = this.rand.Next(dialogue.Count);
-            if(index < 0) return;
-            string msgContent = dialogue[index];
-            if(msgContent == null) return;
-
-            try
-            {
-                this.mw.Main.MsgBar.Show(this.mw.Main.Core.Save.Name, msgContent.Translate());
-            }
-            catch { };
-        }
-
-        private void PlayAnimation(string graphName, GraphInfo.AnimatType animatType)
-        {
-            try {
-                IGraph graph = this.mw.Main.Core.Graph.FindGraph(graphName, animatType, GameSave.ModeType.Happy);
-                if (graph == null) return;
-                this.mw.Main.Display(graph, (Action)(() => {
-                    this.mw.Main.DisplayToNomal();
-                }));
-            } catch { };
         }
 
         private Button GetOffensiveOrDefensiveButton(string symbol)

@@ -1,0 +1,719 @@
+<pu:WindowX x:Class="VPet.Plugin.FunGames.winSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:ll="clr-namespace:LinePutScript.Localization.WPF;assembly=LinePutScript.Localization.WPF"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:VPet.Plugin.FunGames"
+        Closing="Window_Closed"
+        xmlns:pu="https://opensource.panuon.com/wpf-ui"
+        mc:Ignorable="d" Title="{ll:Str 'FunGames - Settings'}" Width="600" Height="427"
+        FontSize="16" ResizeMode="CanResize" WindowState="Normal" SizeToContent="Height"
+        Background="{DynamicResource PrimaryLighter}">
+    <FrameworkElement.Resources>
+        <Style x:Key="ThemeTextBlock" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Grid.ColumnSpan" Value="3" />
+            <Setter Property="Margin" Value="0,0,15,0" />
+        </Style>
+        <Style x:Key="ThemeButton" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource SecondaryLight}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondaryDark}" />
+        </Style>
+    </FrameworkElement.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        
+        <TabControl>
+            <TabItem Header="{ll:Str 'Tic-Tac-Toe'}">
+                <Grid Margin="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60*" />
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="100*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="{ll:Str 'Difficulty'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="1" FontWeight="Bold" Grid.ColumnSpan="3" TextAlignment="Center" Text="{ll:Str 'Chance for a message'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="2" Text="{ll:Str 'Win'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="3" Text="{ll:Str 'Lose'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="4" Text="{ll:Str 'Draw'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="5" Text="{ll:Str 'Start'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="6" Text="{ll:Str 'Wait'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="7" Text="{ll:Str 'Think'}" Style="{DynamicResource ThemeTextBlock}" />
+
+                    <ComboBox x:Name="Difficulty_ttt" Grid.Row="0" Grid.Column="2" Style="{DynamicResource StandardComboBoxStyle}"
+                        FontSize="16" Margin="5,5,5,5" HorizontalAlignment="Left" Width="350">
+                        <ComboBoxItem IsEnabled="True">Easy (Random play)</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True">Medium (Defensive play)</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True">Hard (Offensive play)</ComboBoxItem>
+                    </ComboBox>
+
+                    <Grid Grid.Row="2" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_ttt_win" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_ttt_win, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="3" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_ttt_loss" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_ttt_loss, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="4" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_ttt_draw" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_ttt_draw, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="5" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_ttt_start" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_ttt_start, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="6" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_ttt_wait" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_ttt_wait, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="7" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_ttt_think" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_ttt_think, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Button Content="{ll:Str 'Save'}" Click="SaveConfig_TicTacToe" Grid.Row="8" Grid.ColumnSpan="3" Margin="10, 5, 10, 5" Padding="10, 0, 10, 0" Style="{DynamicResource ThemeButton}" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="{ll:Str 'Hangman'}">
+                <Grid Margin="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60*" />
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="100*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="{ll:Str 'Lives'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="1" Text="{ll:Str 'Only custom words'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="2" Text="{ll:Str 'Custom words'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="3" FontWeight="Bold" Grid.ColumnSpan="3" TextAlignment="Center" Text="{ll:Str 'Chance for a message'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="4" Text="{ll:Str 'Win'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="5" Text="{ll:Str 'Lose'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="6" Text="{ll:Str 'Start'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="7" Text="{ll:Str 'Correct char'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="8" Text="{ll:Str 'Incorrect char'}" Style="{DynamicResource ThemeTextBlock}" />
+
+                    <Grid Grid.Row="0" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Lives_hm" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="1" Maximum="8" Minimum="1" SmallChange="1"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="1"
+                            Value="5" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Lives_hm, Path=Value, StringFormat=0}" />
+                    </Grid>
+
+                    <pu:Switch x:Name="Custom_words" Background="Transparent"
+                        BorderBrush="{DynamicResource PrimaryDark}" BoxHeight="18" BoxWidth="35" Grid.Row="1" Grid.Column="2"
+                        CheckedBackground="{DynamicResource Primary}" CheckedBorderBrush="{DynamicResource Primary}"
+                        CheckedToggleBrush="{DynamicResource DARKPrimaryText}"
+                        ToggleBrush="{DynamicResource PrimaryDark}" ToggleShadowColor="{x:Null}"
+                        ToggleSize="14" />
+
+                    <Button Content="{ll:Str 'Open file'}" Click="OpenFile_CustomWords" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="2" Margin="10, 5, 10, 5" Padding="10, 0, 10, 0" Style="{DynamicResource ThemeButton}" />
+
+                    <Grid Grid.Row="4" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_hm_win" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_hm_win, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="5" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_hm_loss" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_hm_loss, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="6" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_hm_start" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_hm_start, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="7" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_hm_correct" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_hm_correct, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="8" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_hm_incorrect" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_hm_incorrect, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Button Content="{ll:Str 'Save'}" Click="SaveConfig_Hangman" Grid.Row="9" Grid.ColumnSpan="3" Margin="10, 5, 10, 5" Padding="10, 0, 10, 0" Style="{DynamicResource ThemeButton}" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="{ll:Str 'Millionaire'}">
+                <Grid Margin="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60*" />
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="100*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="{ll:Str 'Song'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="1" Text="{ll:Str 'Difficulty'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="2" Text="{ll:Str 'Category'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="3" FontWeight="Bold" Grid.ColumnSpan="3" TextAlignment="Center" Text="{ll:Str 'Chance for a message'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="4" Text="{ll:Str 'Win'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="5" Text="{ll:Str 'Lose'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="6" Text="{ll:Str 'Start'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="7" Text="{ll:Str 'Wait'}" Style="{DynamicResource ThemeTextBlock}" />
+
+
+                    <pu:Switch x:Name="Mil_SongEnbaled" Background="Transparent"
+                        BorderBrush="{DynamicResource PrimaryDark}" BoxHeight="18" BoxWidth="35" Grid.Row="0" Grid.Column="2"
+                        CheckedBackground="{DynamicResource Primary}" CheckedBorderBrush="{DynamicResource Primary}"
+                        CheckedToggleBrush="{DynamicResource DARKPrimaryText}"
+                        ToggleBrush="{DynamicResource PrimaryDark}" ToggleShadowColor="{x:Null}" Content="Active"
+                        ToggleSize="14" />
+
+                    <ComboBox x:Name="Difficulty_mil" Grid.Row="1" Grid.Column="2" Style="{DynamicResource StandardComboBoxStyle}"
+                        FontSize="16" Margin="5,5,5,5" HorizontalAlignment="Left" Width="350">
+                        <ComboBoxItem IsEnabled="True" Tag="easy">Easy</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="medium">Medium</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="hard">Hard</ComboBoxItem>
+                    </ComboBox>
+
+                    <ComboBox x:Name="Category_mil" Grid.Row="2" Grid.Column="2" Style="{DynamicResource StandardComboBoxStyle}"
+                        FontSize="16" Margin="5,5,5,5" HorizontalAlignment="Left" Width="350">
+                        <ComboBoxItem IsEnabled="True" Tag="0">Any Category</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="9">General Knowledge</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="10">Books</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="11">Film</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="12">Music</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="13">Musicals and Theatres</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="14">Television</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="15">Video Games</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="16">Board Games</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="17">Science and Nature</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="18">Science: Computers</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="19">Science: Mathematics</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="20">Mythology</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="21">Sports</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="22">Geography</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="23">History</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="24">Politics</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="25">Art</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="26">Celebrities</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="27">Animals</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="28">Vehicles</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="29">Comics</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="30">Science: Gadgets</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="31">Japanese Anime and Manga</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="32">Cartoon and Animations</ComboBoxItem>
+                    </ComboBox>
+
+                    <Grid Grid.Row="4" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_mil_win" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_mil_win, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="5" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_mil_loss" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_mil_loss, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="6" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_mil_start" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_mil_start, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="7" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_mil_wait" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_mil_wait, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Button Content="{ll:Str 'Save'}" Click="SaveConfig_Millionaire" Grid.Row="8" Grid.ColumnSpan="3" Margin="10, 5, 10, 5" Padding="10, 0, 10, 0" Style="{DynamicResource ThemeButton}" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="{ll:Str 'Minesweeper'}">
+                <Grid Margin="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60*" />
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="100*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="{ll:Str 'Difficulty'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="1" Text="{ll:Str 'Rows'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="2" Text="{ll:Str 'Cols'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="3" Text="{ll:Str 'Mines'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="4" Text="{ll:Str 'Mark (?)'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="5" Text="{ll:Str 'Tick (timer) sound'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="6" Text="{ll:Str 'Cell size'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="7" FontWeight="Bold" Grid.ColumnSpan="3" TextAlignment="Center" Text="{ll:Str 'Chance for a message'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="8" Text="{ll:Str 'Win'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="9" Text="{ll:Str 'Lose'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="10" Text="{ll:Str 'Start'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="11" Text="{ll:Str 'Wait'}" Style="{DynamicResource ThemeTextBlock}" />
+
+                    <ComboBox x:Name="Mine_difficulty" Grid.Row="0" Grid.Column="2" Style="{DynamicResource StandardComboBoxStyle}"
+                        FontSize="16" Margin="5,5,5,5" HorizontalAlignment="Left" Width="350" SelectionChanged="ChangeDifficulty" >
+                        <ComboBoxItem IsEnabled="True" Tag="9_9_10">Beginner</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="16_16_40">Medium</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="30_16_99">Hard</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="30_24_160">Huge</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="30_30_270">Extreme</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Name="Mine_CustomItem" >Custom</ComboBoxItem>
+                    </ComboBox>
+
+                    <Grid Grid.Row="1" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Rows_mine" Grid.Row="1" VerticalAlignment="Center" ValueChanged="Mine_Slider_Custom"
+                            IsSnapToTickEnabled="True" LargeChange="1" Maximum="30" Minimum="9" SmallChange="1"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="1" Value="10" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Rows_mine, Path=Value, StringFormat=0}" />
+                    </Grid>
+
+                    <Grid Grid.Row="2" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Cols_mine" Grid.Row="1" VerticalAlignment="Center" ValueChanged="Mine_Slider_Custom"
+                            IsSnapToTickEnabled="True" LargeChange="1" Maximum="30" Minimum="9" SmallChange="1"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="1" Value="10" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Cols_mine, Path=Value, StringFormat=0}" />
+                    </Grid>
+
+                    <Grid Grid.Row="3" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Mines_mine" Grid.Row="1" VerticalAlignment="Center" ValueChanged="Mine_Slider_Custom"
+                            IsSnapToTickEnabled="True" LargeChange="1" Maximum="30" Minimum="10" SmallChange="1"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="1" Value="30" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Mines_mine, Path=Value, StringFormat=0}" />
+                    </Grid>
+
+                    <pu:Switch Grid.Row="4" x:Name="Mine_isMarkEnabled" Background="Transparent"
+                        BorderBrush="{DynamicResource PrimaryDark}" BoxHeight="18" BoxWidth="35" Grid.Column="2"
+                        CheckedBackground="{DynamicResource Primary}" CheckedBorderBrush="{DynamicResource Primary}"
+                        CheckedToggleBrush="{DynamicResource DARKPrimaryText}"
+                        ToggleBrush="{DynamicResource PrimaryDark}" ToggleShadowColor="{x:Null}" Content="Enable"
+                        ToggleSize="14" />
+
+                    <pu:Switch Grid.Row="5" x:Name="Mine_isTimerSound" Background="Transparent"
+                        BorderBrush="{DynamicResource PrimaryDark}" BoxHeight="18" BoxWidth="35" Grid.Column="2"
+                        CheckedBackground="{DynamicResource Primary}" CheckedBorderBrush="{DynamicResource Primary}"
+                        CheckedToggleBrush="{DynamicResource DARKPrimaryText}"
+                        ToggleBrush="{DynamicResource PrimaryDark}" ToggleShadowColor="{x:Null}" Content="Enable"
+                        ToggleSize="14" />
+
+                    <Grid Grid.Row="6" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="CellSize_mine" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="1" Maximum="65" Minimum="25" SmallChange="1"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="1" Value="25" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=CellSize_mine, Path=Value, StringFormat=0}" />
+                    </Grid>
+
+                    <Grid Grid.Row="8" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_mine_win" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_mine_win, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="9" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_mine_loss" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_mine_loss, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="10" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_mine_start" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_mine_start, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Grid Grid.Row="11" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <Slider x:Name="Chance_mine_wait" Grid.Row="1" VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True" LargeChange="0.1" Maximum="1" Minimum="0" SmallChange="0.05"
+                            Style="{DynamicResource StandardSliderStyle}" TickFrequency="0.05"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}"
+                            Value="0.4" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center"
+                            Background="{x:Null}" FontSize="18" FontWeight="Bold"
+                            Foreground="{DynamicResource DARKPrimaryDarker}"
+                            Text="{Binding ElementName=Chance_mine_wait, Path=Value, StringFormat=0%}"
+                            ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
+                    </Grid>
+
+                    <Button Content="{ll:Str 'Save'}" Click="SaveConfig_Minesweeper" Grid.Row="12" Grid.ColumnSpan="3" Margin="10, 5, 10, 5" Padding="10, 0, 10, 0" Style="{DynamicResource ThemeButton}" />
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </ScrollViewer>
+</pu:WindowX>

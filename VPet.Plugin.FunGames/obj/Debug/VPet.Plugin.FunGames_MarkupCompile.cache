@@ -4,17 +4,17 @@
 library
 C#
 .cs
-C:\Users\PCv2\Desktop\VPet-main\VPet.Plugin.TicTacToe\obj\Debug\
+C:\Users\PCv2\Desktop\VPet-main\VPet.Plugin.FunGames\obj\Debug\
 VPet.Plugin.FunGames
 none
 false
 DEBUG;TRACE
 
-2-1499337321
-
-41411161069
-161186508316
-App.xaml;Display\TicTacToeBoard.xaml;
+6-676859823
+1473199579
+101243255811
+19-194628169
+Display\HangmanBoard.xaml;Display\MillionaireBoard.xaml;Display\MinesweeperBoard.xaml;Display\TicTacToeBoard.xaml;Display\petBoard.xaml;winSettings.xaml;
 
 False
 

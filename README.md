@@ -1,26 +1,31 @@
 
 
 # About
-<img src="https://steamuserimages-a.akamaihd.net/ugc/2012600514533380250/0E120E2D43B9D754D25A572A31BFE539BFD80571/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" align="right" width="150px"/>
+<img src="https://steamuserimages-a.akamaihd.net/ugc/2079031399340323191/5A1077997648A1B31203F2098C2F760845B2D570/?imw=268&imh=268&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true" align="right" width="150px"/>
 
 _Dive into the world of classic games._ 🎮 [Page on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3027915926).
 <br>
 This modification includes classic games such as:
 - Tic-Tac-Toe
 - Hangman
-
+- Millionaire
+- Minesweeper
 
 ## Screenshots
 
-![Menu Panel](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394956/6FACC038BB301D8DBB51CF82EE55C3D0D51E22DB/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
-![Tic-Tac-Toe](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394974/55F04E66CE200D0F803E76217B0A5476519277D3/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
-![Hangman](https://steamuserimages-a.akamaihd.net/ugc/2012600514533394981/AC2BFEF440276BF08EF7DAF140950D87FED4E12D/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
-
+![Menu Panel](https://steamuserimages-a.akamaihd.net/ugc/2079031399340330078/1951204B092E6660F32346735FFF1AEF2619B76C/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true)
+![Tic-Tac-Toe](https://steamuserimages-a.akamaihd.net/ugc/2079031399340330054/E4C1B253C0E8199CE206EC86AD028176A1969B3F/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true)
+![Hangman](https://steamuserimages-a.akamaihd.net/ugc/2079031399340330062/CEB87D1C1A78651B32C90B03243EF7D24337F5FB/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true)
+![Millionaire](https://steamuserimages-a.akamaihd.net/ugc/2079031399340330068/3EC11215540F0E50AB90813C81DD1E530603A1F4/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true)
+![Minesweeper](https://steamuserimages-a.akamaihd.net/ugc/2079031399340330075/44172DA2E3918390724C0B15D56ECE83DB76AE76/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true)
 
 ## CHANGELOG
 
-v 1.0
-- Project start
+v1.0.4 | New games (Millionaire and Minesweeper) and settings added
+v1.0.3 | Fixed a bug that conflicted with the newer version of VPet
+v1.0.2 | Compatibility for EdgeTTS
+v1.0.1 | A few fixes
+v1.0.0 | Project start (Tic-Tac-Toe and Hangman)
 
 
 ## Feedback

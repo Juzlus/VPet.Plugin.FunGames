@@ -18,30 +18,83 @@ namespace VPet.Plugin.FunGames
 {
     public partial class HangmanBoard : WindowX
     {
-        Random rand;
-        private string path;
+        private FunGames games = null;
+
         private int lives = 5;
-        private string chosenWord;
-        private char[] letters;
+        private int maxLives = 5;
+        private bool isOnlyCustom = false;
+        private double chance_win = 0.8;
+        private double chance_loss = 0.8;
+        private double chance_start = 0.3;
+        private double chance_correct = 0.15;
+        private double chance_incorrect = 0.15;
+
+        private Random rand = null;
+        private string chosenWord = null;
+        private char[] letters = null;
         private int correctChar = 0;
+
+        private List<string> customWords = new List<string>();
         private List<Button> charButtons = new List<Button>();
+        private DialogueForHamgman dialogue = new DialogueForHamgman();
 
-        IMainWindow mw;
-        SoundPlayer soundPlayer;
-        DialogueForHamgman dialogue = new DialogueForHamgman();
-
-        public HangmanBoard(IMainWindow mw)
+        public HangmanBoard(FunGames games)
         {
-            this.mw = mw;
+            this.games = games;
+            this.ImportConfig();
+            this.maxLives = this.lives;
+            this.ImportCustomWords();
             this.InitializeComponent();
             this.GetRandomWord();
+        }
 
-            this.path = Directory.GetParent(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)).FullName;
-            this.soundPlayer = new SoundPlayer(this.path + "\\audio\\hammer.wav");
+        private void ImportConfig()
+        {
+            try
+            {
+                string[] lines = File.ReadAllLines(this.games.path + "\\config\\Hangman.lps");
+                if (lines.Length <= 0) return;
 
-            SendButton.Content = "Send".Translate();
-            RestartButton.Content = "Restart".Translate();
-            ExitButton.Content = "Exit".Translate();
+                foreach (string line in lines)
+                {
+                    string name = line.Split('=')[0];
+                    string value = line.Split('=')[1];
+                    if (name == null || value == null) continue;
+
+                    if (name == "lives")
+                        this.lives = int.Parse(value);
+                    else if (name == "isOnlyCustom")
+                        this.isOnlyCustom = bool.Parse(value);
+                    else if (name == "chance_win")
+                        this.chance_win = double.Parse(value);
+                    else if (name == "chance_loss")
+                        this.chance_loss = double.Parse(value);
+                    else if (name == "chance_start")
+                        this.chance_start = double.Parse(value);
+                    else if (name == "chance_correct")
+                        this.chance_correct = double.Parse(value);
+                    else if (name == "chance_incorrect")
+                        this.chance_incorrect = double.Parse(value);
+                }
+            }
+            catch (IOException e)
+            {
+            }
+        }
+
+        private void ImportCustomWords()
+        {
+            try
+            {
+                string[] lines = File.ReadAllLines(this.games.path + "\\config\\Hangman_custom.txt");
+                if (lines.Length <= 0) return;
+
+                foreach (string line in lines)
+                    this.customWords.Add(line);
+            }
+            catch (IOException e)
+            {
+            }
         }
 
         async private void GetRandomWord()
@@ -54,13 +107,28 @@ namespace VPet.Plugin.FunGames
             inCorrectWordLabel.Children.Clear();
 
             this.rand = new Random();
-            this.SendRandomMsg(dialogue.start, 0.3);
+            this.games.SendRandomMsg(this.dialogue.start, this.chance_start);
 
-            this.lives = 5;
             this.correctChar = 0;
-            int index = this.rand.Next(dialogue.words.Count);
+            this.lives = this.maxLives;
+
+            string word = string.Empty;
+
+            if (this.isOnlyCustom == true) {
+                int index = this.rand.Next(this.customWords.Count);
+                if(index >= 0) word = this.customWords[index];
+            }
+            else
+            {
+                int index = this.rand.Next(this.dialogue.words.Count + this.customWords.Count);
+                if (index <= this.dialogue.words.Count)
+                    word = this.dialogue.words[index];
+                else
+                    word = this.customWords[index - this.dialogue.words.Count];
+            }
+
             await Task.Delay(200);
-            this.chosenWord = index >= 0 ? dialogue.words[index].Replace("{Name}", this.mw.Main.Core.Save.Name) : "Sun";
+            this.chosenWord = word != string.Empty ? word.Replace("{Name}", this.games.MW.Main.Core.Save.Name).Replace(" ", "") : "Sun".Translate();
             this.chosenWord = this.chosenWord.Translate().ToUpper();
             this.letters = this.chosenWord.ToCharArray();
 
@@ -78,6 +146,7 @@ namespace VPet.Plugin.FunGames
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            this.games.hangmanBoard = (HangmanBoard) null;
             this.Close();
         }
 
@@ -103,7 +172,7 @@ namespace VPet.Plugin.FunGames
             {
                 tbTalk.IsEnabled = false;
                 SendButton.IsEnabled = false;
-                this.SendRandomMsg(dialogue.loss, 0.8);
+                this.games.SendRandomMsg(this.dialogue.loss, this.chance_loss);
 
                 int i = 0;
                 foreach (char c in this.letters)
@@ -117,7 +186,7 @@ namespace VPet.Plugin.FunGames
             {
                 tbTalk.IsEnabled = false;
                 SendButton.IsEnabled = false;
-                this.SendRandomMsg(dialogue.win, 0.8);
+                this.games.SendRandomMsg(this.dialogue.win, this.chance_win);
             }
         }
 
@@ -135,7 +204,7 @@ namespace VPet.Plugin.FunGames
             {
                 if(playerLetter == Convert.ToString(c))
                 {
-                    this.SendRandomMsg(dialogue.correctChar, 0.15);
+                    this.games.SendRandomMsg(this.dialogue.correctChar, this.chance_correct);
                     if (charButtons[i].Content.ToString() == "?")
                     {
                         this.correctChar++;
@@ -148,10 +217,9 @@ namespace VPet.Plugin.FunGames
 
             if(!isAnyCorrect) {
                 this.lives--;
-                PlaySFX();
-
-                this.SendRandomMsg(dialogue.incorrectChar, 0.15);
-                this.PlayAnimation("building", GraphInfo.AnimatType.Single);
+                this.games.PlaySFX(1);
+                this.games.SendRandomMsg(this.dialogue.incorrectChar, this.chance_incorrect);
+                this.games.PlayAnimation("fungames.building", GraphInfo.AnimatType.Single);
 
                 Button newInCorrectLetter = new Button();
                 newInCorrectLetter.Content = playerLetter;
@@ -159,52 +227,16 @@ namespace VPet.Plugin.FunGames
 
                 inCorrectWordLabel.Children.Add(newInCorrectLetter);
 
-                string imagePath = this.path + "\\image\\Hook_phase_" + (5 - this.lives).ToString() + ".png";
-                BitmapImage image = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+                string imagePath = this.games.path + "\\image\\hook\\Hook_phase_" + this.lives.ToString() + ".png";
+                if (File.Exists(imagePath)) {
+                    BitmapImage image = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
 
-                ImageSource imageSource = image;
-                Hook_phase.Source = imageSource;
+                    ImageSource imageSource = image;
+                    Hook_phase.Source = imageSource;
+                }
             }
 
             this.CheckWin();
-        }
-
-        private void SendRandomMsg(List<string> dialogue, double chance)
-        {
-            if (rand.NextDouble() < 1 - chance) return;
-
-            int index = this.rand.Next(dialogue.Count);
-            if (index < 0) return;
-            string msgContent = dialogue[index];
-            if (msgContent == null) return;
-
-            try
-            {
-                this.mw.Main.MsgBar.Show(this.mw.Main.Core.Save.Name, msgContent.Translate());
-            }
-            catch { };
-        }
-
-        private void PlayAnimation(string graphName, GraphInfo.AnimatType animatType)
-        {
-            try
-            {
-                IGraph graph = this.mw.Main.Core.Graph.FindGraph(graphName, animatType, GameSave.ModeType.Happy);
-                if (graph == null) return;
-                this.mw.Main.Display(graph, (Action)(() => {
-                    this.mw.Main.DisplayToNomal();
-                }));
-            }
-            catch { };
-        }
-
-        private void PlaySFX()
-        {
-            try
-            {
-                this.soundPlayer.Play();
-            }
-            catch { }
         }
 
         private void Restart_Click(object sender, RoutedEventArgs e)
@@ -219,11 +251,6 @@ namespace VPet.Plugin.FunGames
                 SendMessage_Click(sender, e);
                 e.Handled = true;
             }
-        }
-
-        private void tbTalk_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

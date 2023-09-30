@@ -278,6 +278,14 @@
             <param name="img">夹层内容</param>
             <param name="EndAction">动画结束后操作</param>
         </member>
+        <member name="M:VPet_Simulator.Core.Main.Display(System.String,System.Windows.Media.ImageSource,System.Action)">
+            <summary>
+            显示夹层动画
+            </summary>
+            <param name="name">动画名称</param>
+            <param name="img">夹层内容</param>
+            <param name="EndAction">动画结束后操作</param>
+        </member>
         <member name="E:VPet_Simulator.Core.Main.OnSay">
             <summary>
             处理说话内容
@@ -293,12 +301,12 @@
             事件Timer
             </summary>
         </member>
-        <member name="M:VPet_Simulator.Core.Main.SayRnd(System.String,System.Boolean)">
+        <member name="M:VPet_Simulator.Core.Main.SayRnd(System.String,System.Boolean,System.String)">
             <summary>
             说话,使用随机表情
             </summary>
         </member>
-        <member name="M:VPet_Simulator.Core.Main.Say(System.String,System.String,System.Boolean)">
+        <member name="M:VPet_Simulator.Core.Main.Say(System.String,System.String,System.Boolean,System.String)">
             <summary>
             说话
             </summary>
@@ -546,6 +554,21 @@
             MenuFeed Name Field
             </summary>
         </member>
+        <member name="F:VPet_Simulator.Core.ToolBar.MenuStudy">
+            <summary>
+            MenuStudy Name Field
+            </summary>
+        </member>
+        <member name="F:VPet_Simulator.Core.ToolBar.MenuPlay">
+            <summary>
+            MenuPlay Name Field
+            </summary>
+        </member>
+        <member name="F:VPet_Simulator.Core.ToolBar.MenuWork">
+            <summary>
+            MenuWork Name Field
+            </summary>
+        </member>
         <member name="F:VPet_Simulator.Core.ToolBar.MenuDIY">
             <summary>
             MenuDIY Name Field
@@ -591,6 +614,38 @@
             <summary>
             开始时间
             </summary>
+        </member>
+        <member name="E:VPet_Simulator.Core.WorkTimer.E_FinishWork">
+            <summary>
+            任务完成时调用该参数
+            </summary>
+        </member>
+        <member name="T:VPet_Simulator.Core.WorkTimer.FinishWorkInfo">
+            <summary>
+            完成工作信息
+            </summary>
+        </member>
+        <member name="F:VPet_Simulator.Core.WorkTimer.FinishWorkInfo.work">
+            <summary>
+            当前完成工作
+            </summary>
+        </member>
+        <member name="F:VPet_Simulator.Core.WorkTimer.FinishWorkInfo.count">
+            <summary>
+            当前完成工作收入
+            </summary>
+        </member>
+        <member name="F:VPet_Simulator.Core.WorkTimer.FinishWorkInfo.spendtime">
+            <summary>
+            当前完成工作花费时间
+            </summary>
+        </member>
+        <member name="M:VPet_Simulator.Core.WorkTimer.FinishWorkInfo.#ctor(VPet_Simulator.Core.GraphHelper.Work,System.Double)">
+            <summary>
+            完成工作信息
+            </summary>
+            <param name="work">当前工作</param>
+            <param name="count">当前盈利(自动计算附加)</param>
         </member>
         <member name="M:VPet_Simulator.Core.WorkTimer.M_TimeUIHandle(VPet_Simulator.Core.Main)">
             <summary>
@@ -1175,21 +1230,6 @@
             饥饿
             </summary>
         </member>
-        <member name="F:VPet_Simulator.Core.GraphInfo.GraphType.Eat">
-            <summary>
-            吃东西
-            </summary>
-        </member>
-        <member name="F:VPet_Simulator.Core.GraphInfo.GraphType.Drink">
-            <summary>
-            喝东西
-            </summary>
-        </member>
-        <member name="F:VPet_Simulator.Core.GraphInfo.GraphType.Gift">
-            <summary>
-            收到礼物
-            </summary>
-        </member>
         <member name="T:VPet_Simulator.Core.GraphInfo.AnimatType">
             <summary>
             动作: 动画的动作 Start Loop End
@@ -1380,6 +1420,11 @@
             <param name="path">文件夹位置</param>
             <param name="paths">文件内容列表</param>
             <param name="isLoop">是否循环</param>
+        </member>
+        <member name="F:VPet_Simulator.Core.PNGAnimation.MaxLoadNumber">
+            <summary>
+            最大同时加载数
+            </summary>
         </member>
         <member name="T:VPet_Simulator.Core.PNGAnimation.Animation">
             <summary>

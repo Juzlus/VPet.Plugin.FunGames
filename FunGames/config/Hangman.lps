@@ -1,0 +1,7 @@
+lives=8
+isOnlyCustom=False
+chance_win=0.8
+chance_loss=0.8
+chance_start=0.3
+chance_correct=0.15
+chance_incorrect=0.15
