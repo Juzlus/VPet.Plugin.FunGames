@@ -13,7 +13,7 @@ This is a modification to [VPET Simulator](https://store.steampowered.com/app/19
 ![Millionaire](https://steamuserimages-a.akamaihd.net/ugc/2079031399340330068/3EC11215540F0E50AB90813C81DD1E530603A1F4/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true)
 ![Minesweeper](https://steamuserimages-a.akamaihd.net/ugc/2079031399340330075/44172DA2E3918390724C0B15D56ECE83DB76AE76/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true)
 
-## 📋 CHANGELOG
+## 📋 Changelog
    
 ### v1.0.4
 - New game Millionaire
