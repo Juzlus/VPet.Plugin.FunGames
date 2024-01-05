@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" ResizeMode="NoResize"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" ShowInTaskbar="False"
         xmlns:pu="https://opensource.panuon.com/wpf-ui" xmlns:local="clr-namespace:VPet.Plugin.FunGames"
-        mc:Ignorable="d" Title="{ll:Str 'TicTacToe'}" AllowsTransparency="True" WindowStyle="None" Background="Transparent"
+        mc:Ignorable="d" Title="{ll:Str 'Tic-Tac-Toe'}" AllowsTransparency="True" WindowStyle="None" Background="Transparent"
         Height="260" Width="201" FontSize="14" pu:WindowXCaption.Height="0" pu:WindowXCaption.Buttons="Close"
         Topmost="True" MouseDown="WindowMouseDown" MouseMove="WindowMouseMove">
     <WindowChrome.WindowChrome>

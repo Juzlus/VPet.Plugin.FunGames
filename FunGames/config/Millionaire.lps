@@ -1,6 +1,7 @@
 song=True
 difficulty=easy
 category=0
+database=0
 chance_win=0.5
 chance_loss=0.5
 chance_start=1

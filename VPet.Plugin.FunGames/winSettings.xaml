@@ -56,9 +56,9 @@
 
                     <ComboBox x:Name="Difficulty_ttt" Grid.Row="0" Grid.Column="2" Style="{DynamicResource StandardComboBoxStyle}"
                         FontSize="16" Margin="5,5,5,5" HorizontalAlignment="Left" Width="350">
-                        <ComboBoxItem IsEnabled="True">Easy (Random play)</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True">Medium (Defensive play)</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True">Hard (Offensive play)</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Content="{ll:Str 'Easy (Random play)'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Content="{ll:Str 'Medium (Defensive play)'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Content="{ll:Str 'Hard (Offensive play)'}"></ComboBoxItem>
                     </ComboBox>
 
                     <Grid Grid.Row="2" Grid.Column="2">
@@ -363,62 +363,72 @@
                         <RowDefinition Height="40" />
                         <RowDefinition Height="40" />
                         <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="{ll:Str 'Song'}" Style="{DynamicResource ThemeTextBlock}" />
-                    <TextBlock Grid.Row="1" Text="{ll:Str 'Difficulty'}" Style="{DynamicResource ThemeTextBlock}" />
-                    <TextBlock Grid.Row="2" Text="{ll:Str 'Category'}" Style="{DynamicResource ThemeTextBlock}" />
-                    <TextBlock Grid.Row="3" FontWeight="Bold" Grid.ColumnSpan="3" TextAlignment="Center" Text="{ll:Str 'Chance for a message'}" Style="{DynamicResource ThemeTextBlock}" />
-                    <TextBlock Grid.Row="4" Text="{ll:Str 'Win'}" Style="{DynamicResource ThemeTextBlock}" />
-                    <TextBlock Grid.Row="5" Text="{ll:Str 'Lose'}" Style="{DynamicResource ThemeTextBlock}" />
-                    <TextBlock Grid.Row="6" Text="{ll:Str 'Start'}" Style="{DynamicResource ThemeTextBlock}" />
-                    <TextBlock Grid.Row="7" Text="{ll:Str 'Wait'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="1" Text="{ll:Str 'Database'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="2" Text="{ll:Str 'Difficulty'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="3" Text="{ll:Str 'Category'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="4" FontWeight="Bold" Grid.ColumnSpan="3" TextAlignment="Center" Text="{ll:Str 'Chance for a message'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="5" Text="{ll:Str 'Win'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="6" Text="{ll:Str 'Lose'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="7" Text="{ll:Str 'Start'}" Style="{DynamicResource ThemeTextBlock}" />
+                    <TextBlock Grid.Row="8" Text="{ll:Str 'Wait'}" Style="{DynamicResource ThemeTextBlock}" />
 
 
                     <pu:Switch x:Name="Mil_SongEnbaled" Background="Transparent"
                         BorderBrush="{DynamicResource PrimaryDark}" BoxHeight="18" BoxWidth="35" Grid.Row="0" Grid.Column="2"
                         CheckedBackground="{DynamicResource Primary}" CheckedBorderBrush="{DynamicResource Primary}"
                         CheckedToggleBrush="{DynamicResource DARKPrimaryText}"
-                        ToggleBrush="{DynamicResource PrimaryDark}" ToggleShadowColor="{x:Null}" Content="Active"
+                        ToggleBrush="{DynamicResource PrimaryDark}" ToggleShadowColor="{x:Null}" Content="{ll:Str 'Active'}"
                         ToggleSize="14" />
 
-                    <ComboBox x:Name="Difficulty_mil" Grid.Row="1" Grid.Column="2" Style="{DynamicResource StandardComboBoxStyle}"
+                    <ComboBox x:Name="Databases_mil" Grid.Row="1" Grid.Column="2" Style="{DynamicResource StandardComboBoxStyle}"
                         FontSize="16" Margin="5,5,5,5" HorizontalAlignment="Left" Width="350">
-                        <ComboBoxItem IsEnabled="True" Tag="easy">Easy</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="medium">Medium</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="hard">Hard</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="ofline" Content="{ll:Str 'Opentdb snapshot (3493) - Offline'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="online" Content="{ll:Str 'Opentdb (3500+) - Online'}"></ComboBoxItem>
                     </ComboBox>
 
-                    <ComboBox x:Name="Category_mil" Grid.Row="2" Grid.Column="2" Style="{DynamicResource StandardComboBoxStyle}"
+                    <ComboBox x:Name="Difficulty_mil" Grid.Row="2" Grid.Column="2" Style="{DynamicResource StandardComboBoxStyle}"
                         FontSize="16" Margin="5,5,5,5" HorizontalAlignment="Left" Width="350">
-                        <ComboBoxItem IsEnabled="True" Tag="0">Any Category</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="9">General Knowledge</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="10">Books</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="11">Film</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="12">Music</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="13">Musicals and Theatres</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="14">Television</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="15">Video Games</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="16">Board Games</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="17">Science and Nature</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="18">Science: Computers</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="19">Science: Mathematics</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="20">Mythology</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="21">Sports</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="22">Geography</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="23">History</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="24">Politics</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="25">Art</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="26">Celebrities</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="27">Animals</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="28">Vehicles</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="29">Comics</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="30">Science: Gadgets</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="31">Japanese Anime and Manga</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="32">Cartoon and Animations</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="any" Content="{ll:Str 'Any'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="easy" Content="{ll:Str 'Easy'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="medium" Content="{ll:Str 'Medium'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="hard" Content="{ll:Str 'Hard'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="real" Content="{ll:Str 'Real'}" ToolTip="{ll:Str 'The difficulty level increases every 5 questions.'}"></ComboBoxItem>
                     </ComboBox>
 
-                    <Grid Grid.Row="4" Grid.Column="2">
+                    <ComboBox x:Name="Category_mil" Grid.Row="3" Grid.Column="2" Style="{DynamicResource StandardComboBoxStyle}"
+                        FontSize="16" Margin="5,5,5,5" HorizontalAlignment="Left" Width="350">
+                        <ComboBoxItem IsEnabled="True" Tag="0" Content="{ll:Str 'Any Category'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="9" Content="{ll:Str 'General Knowledge'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="10" Content="{ll:Str 'Books'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="11" Content="{ll:Str 'Film'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="12" Content="{ll:Str 'Music'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="13" Content="{ll:Str 'Musicals and Theatres'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="14" Content="{ll:Str 'Television'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="15" Content="{ll:Str 'Video Games'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="16" Content="{ll:Str 'Board Games'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="17" Content="{ll:Str 'Science and Nature'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="18" Content="{ll:Str 'Science: Computers'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="19" Content="{ll:Str 'Science: Mathematics'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="20" Content="{ll:Str 'Mythology'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="21" Content="{ll:Str 'Sports'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="22" Content="{ll:Str 'Geography'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="23" Content="{ll:Str 'History'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="24" Content="{ll:Str 'Politics'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="25" Content="{ll:Str 'Art'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="26" Content="{ll:Str 'Celebrities'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="27" Content="{ll:Str 'Animals'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="28" Content="{ll:Str 'Vehicles'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="29" Content="{ll:Str 'Comics'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="30" Content="{ll:Str 'Science: Gadgets'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="31" Content="{ll:Str 'Japanese Anime and Manga'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="32" Content="{ll:Str 'Cartoon and Animations'}"></ComboBoxItem>
+                    </ComboBox>
+
+                    <Grid Grid.Row="5" Grid.Column="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="90*" />
                             <ColumnDefinition Width="10*" />
@@ -438,7 +448,7 @@
                             ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
                     </Grid>
 
-                    <Grid Grid.Row="5" Grid.Column="2">
+                    <Grid Grid.Row="6" Grid.Column="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="90*" />
                             <ColumnDefinition Width="10*" />
@@ -458,7 +468,7 @@
                             ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
                     </Grid>
 
-                    <Grid Grid.Row="6" Grid.Column="2">
+                    <Grid Grid.Row="7" Grid.Column="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="90*" />
                             <ColumnDefinition Width="10*" />
@@ -478,7 +488,7 @@
                             ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
                     </Grid>
 
-                    <Grid Grid.Row="7" Grid.Column="2">
+                    <Grid Grid.Row="8" Grid.Column="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="90*" />
                             <ColumnDefinition Width="10*" />
@@ -498,7 +508,7 @@
                             ToolTip="{ll:Str 'What is the chance of the message | 0 = never, 1 = always'}" />
                     </Grid>
 
-                    <Button Content="{ll:Str 'Save'}" Click="SaveConfig_Millionaire" Grid.Row="8" Grid.ColumnSpan="3" Margin="10, 5, 10, 5" Padding="10, 0, 10, 0" Style="{DynamicResource ThemeButton}" />
+                    <Button Content="{ll:Str 'Save'}" Click="SaveConfig_Millionaire" Grid.Row="9" Grid.ColumnSpan="3" Margin="10, 5, 10, 5" Padding="10, 0, 10, 0" Style="{DynamicResource ThemeButton}" />
                 </Grid>
             </TabItem>
 
@@ -540,12 +550,12 @@
 
                     <ComboBox x:Name="Mine_difficulty" Grid.Row="0" Grid.Column="2" Style="{DynamicResource StandardComboBoxStyle}"
                         FontSize="16" Margin="5,5,5,5" HorizontalAlignment="Left" Width="350" SelectionChanged="ChangeDifficulty" >
-                        <ComboBoxItem IsEnabled="True" Tag="9_9_10">Beginner</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="16_16_40">Medium</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="30_16_99">Hard</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="30_24_160">Huge</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Tag="30_30_270">Extreme</ComboBoxItem>
-                        <ComboBoxItem IsEnabled="True" Name="Mine_CustomItem" >Custom</ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="9_9_10" Content="{ll:Str 'Beginner (9x9)'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="16_16_40" Content="{ll:Str 'Medium (16x16)'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="30_16_99" Content="{ll:Str 'Hard (30x16)'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="30_24_160" Content="{ll:Str 'Huge (30x24)'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Tag="30_30_270" Content="{ll:Str 'Extreme (30x30)'}"></ComboBoxItem>
+                        <ComboBoxItem IsEnabled="True" Name="Mine_CustomItem" Content="Custom"></ComboBoxItem>
                     </ComboBox>
 
                     <Grid Grid.Row="1" Grid.Column="2">
@@ -603,14 +613,14 @@
                         BorderBrush="{DynamicResource PrimaryDark}" BoxHeight="18" BoxWidth="35" Grid.Column="2"
                         CheckedBackground="{DynamicResource Primary}" CheckedBorderBrush="{DynamicResource Primary}"
                         CheckedToggleBrush="{DynamicResource DARKPrimaryText}"
-                        ToggleBrush="{DynamicResource PrimaryDark}" ToggleShadowColor="{x:Null}" Content="Enable"
+                        ToggleBrush="{DynamicResource PrimaryDark}" ToggleShadowColor="{x:Null}" Content="{ll:Str 'Enable'}"
                         ToggleSize="14" />
 
                     <pu:Switch Grid.Row="5" x:Name="Mine_isTimerSound" Background="Transparent"
                         BorderBrush="{DynamicResource PrimaryDark}" BoxHeight="18" BoxWidth="35" Grid.Column="2"
                         CheckedBackground="{DynamicResource Primary}" CheckedBorderBrush="{DynamicResource Primary}"
                         CheckedToggleBrush="{DynamicResource DARKPrimaryText}"
-                        ToggleBrush="{DynamicResource PrimaryDark}" ToggleShadowColor="{x:Null}" Content="Enable"
+                        ToggleBrush="{DynamicResource PrimaryDark}" ToggleShadowColor="{x:Null}" Content="{ll:Str 'Enable'}"
                         ToggleSize="14" />
 
                     <Grid Grid.Row="6" Grid.Column="2">
@@ -713,7 +723,7 @@
                     <Button Content="{ll:Str 'Save'}" Click="SaveConfig_Minesweeper" Grid.Row="12" Grid.ColumnSpan="3" Margin="10, 5, 10, 5" Padding="10, 0, 10, 0" Style="{DynamicResource ThemeButton}" />
                 </Grid>
             </TabItem>
-
+            <TextBlock Text="MOD Version 1.0.6 x64"></TextBlock>
         </TabControl>
     </ScrollViewer>
 </pu:WindowX>

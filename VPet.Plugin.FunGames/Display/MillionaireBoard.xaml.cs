@@ -12,6 +12,7 @@ using System.Windows;
 using LinePutScript.Localization.WPF;
 using System.Windows.Threading;
 using System.IO;
+using System.Linq;
 
 namespace VPet.Plugin.FunGames
 {
@@ -20,11 +21,14 @@ namespace VPet.Plugin.FunGames
         private bool isSong = true;
         private string difficulty = "easy";
         private int category = 0;
+        private int database = 0;
         private double chance_win = 0.5;
         private double chance_lose = 0.5;
         private double chance_start = 1;
         private double chance_wait = 1;
+        private bool isRealDifficult = false;
 
+        List<Question> dbSnapshot = new List<Question>();
         private bool obtainPrize = false;
         private bool hasLive = true;
         private int currentState = 0;
@@ -57,19 +61,31 @@ namespace VPet.Plugin.FunGames
         public MillionaireBoard(FunGames games)
         {
             this.games = games;
-
-            if (MessageBoxX.Show("This mini game requires an internet connection,\nquestions are obtained from: https://opentdb.com".Translate(), "Internet connection required".Translate(), MessageBoxButton.YesNo) == MessageBoxResult.No)
-            {
-                this.games.millionaireBoard = (MillionaireBoard)null;
-                this.games.petBoard.SetVisibility(false);
-                this.Close();
-                return;
-            }
-
             this.ImportConfig();
+
+            if (this.database == 1) {
+                if (MessageBoxX.Show("This mini game requires an internet connection,\nquestions are obtained from: https://opentdb.com".Translate(), "Internet connection required".Translate(), MessageBoxButton.YesNo) == MessageBoxResult.No)
+                {
+                    this.games.millionaireBoard = (MillionaireBoard)null;
+                    this.games.petBoard.SetVisibility(false);
+                    this.Close();
+                    return;
+                }
+            }
+            else
+                this.GenerateJsonDatabase();
+
             this.games.SendRandomMsg(this.dialogue.start, chance_start);
+
+            if (this.difficulty == "real")
+            {
+                this.difficulty = "easy";
+                this.isRealDifficult = true;
+            }
+            else if (this.difficulty == "any")
+                this.difficulty = "0";
+
             this.InitializeComponent();
-            this.GetQustion();
             this.AnswerA.MouseDown += (sender, e) => { this.CheckAnswer(this.AnswerA_Image); };
             this.AnswerB.MouseDown += (sender, e) => { this.CheckAnswer(this.AnswerB_Image); };
             this.AnswerC.MouseDown += (sender, e) => { this.CheckAnswer(this.AnswerC_Image); };
@@ -78,6 +94,8 @@ namespace VPet.Plugin.FunGames
             this.inactivityTimer = new DispatcherTimer();
             this.inactivityTimer.Interval = TimeSpan.FromSeconds(45);
             this.inactivityTimer.Tick += this.InactivityTimer;
+
+            this.GetQustion();
         }
 
         private void ImportConfig()
@@ -99,6 +117,8 @@ namespace VPet.Plugin.FunGames
                         this.difficulty = value;
                     else if (name == "category")
                         this.category = int.Parse(value);
+                    else if (name == "database")
+                        this.database = int.Parse(value);
                     else if (name == "chance_win")
                         this.chance_win = double.Parse(value);
                     else if (name == "chance_loss")
@@ -114,7 +134,70 @@ namespace VPet.Plugin.FunGames
             }
         }
 
-        public async void GetQustion()
+        private void GenerateJsonDatabase()
+        {
+            try
+            {
+                string[] lines = File.ReadAllLines(this.games.path + "\\config\\Millionaire_questions.lps");
+                if (lines.Length <= 0) return;
+
+                foreach (string line in lines)
+                {
+                    string[] questionElements = line.Split(new string[] { ":|" }, StringSplitOptions.None);
+                    if (questionElements == null) continue;
+                    this.dbSnapshot.Add(new Question { 
+                        tagId = int.Parse(questionElements[0]),
+                        difficulty = questionElements[1],
+                        question = questionElements[2],
+                        correct_answer = questionElements[3],
+                        incorrect_answer_1 = questionElements[4],
+                        incorrect_answer_2 = questionElements[5],
+                        incorrect_answer_3 = questionElements[6],
+                    });
+                }
+            }
+            catch (IOException e)
+            {
+            }
+        }
+
+        public void GetQustion()
+        {
+            if(this.isRealDifficult)
+            {
+                if(this.currentState >= 9)
+                    this.difficulty = "hard";
+                else if (this.currentState >= 4)
+                    this.difficulty = "medium";
+            }
+
+            if (this.database == 1)
+                this.GetQustion_Online();
+            else
+                this.GetQustion_Offline();
+        }
+
+        public void GetQustion_Offline()
+        {
+            List<Question> filteredQuestions = new List<Question> ();
+            if(this.category == 0 && this.difficulty == "0")
+                filteredQuestions = this.dbSnapshot.ToList();
+            else if (this.category == 0 && this.difficulty != "0")
+                filteredQuestions = this.dbSnapshot.Where(q => q.difficulty == this.difficulty).ToList();
+            else if (this.category != 0 && this.difficulty == "0")
+                filteredQuestions = this.dbSnapshot.Where(q => q.tagId == this.category).ToList();
+            else if (this.category != 0 && this.difficulty != "0")
+                filteredQuestions = this.dbSnapshot.Where(q => q.tagId == this.category && q.difficulty == this.difficulty).ToList();
+
+            this.random = new Random();
+            int randomIndex = random.Next(0, filteredQuestions.Count);
+            Question randomQuestion = filteredQuestions[randomIndex];
+
+            this.ChangeQuestion(randomQuestion.question, randomQuestion.correct_answer, randomQuestion.incorrect_answer_1, randomQuestion.incorrect_answer_2, randomQuestion.incorrect_answer_3);
+            this.Prize_Text.Text = this.stateText[this.currentState];
+        }
+
+        public async void GetQustion_Online()
         {
             using (HttpClient client = new HttpClient())
             {
@@ -143,7 +226,7 @@ namespace VPet.Plugin.FunGames
         private void ChangeQuestion(string question, string correctAnswer, string incorrectAnswer1, string incorrectAnswer2, string incorrectAnswer3)
         {
             this.inactivityTimer.Start();
-
+            
             if(this.isSong)
                 this.games.PlaySFX(2);
             this.AnswerA.IsEnabled = true;
@@ -155,14 +238,14 @@ namespace VPet.Plugin.FunGames
             this.AnswerB_Image.Source = answer_default;
             this.AnswerC_Image.Source = answer_default;
             this.AnswerD_Image.Source = answer_default;
-            this.Question_Text.Text = WrapText(new Regex(@"&[^;]+;").Replace(question.Replace("&quot;", "\""), ""));
+            this.Question_Text.Text = this.WrapText(this.ConvertText(question));
 
             this.answersText = ShuffleList(new List<TextBlock> { this.AnswerA_Text, this.AnswerB_Text, this.AnswerC_Text, this.AnswerD_Text });
 
-            this.answersText[0].Text = new Regex(@"&[^;]+;").Replace(correctAnswer.Replace("&quot;", "\""), "");
-            this.answersText[1].Text = new Regex(@"&[^;]+;").Replace(incorrectAnswer1.Replace("&quot;", "\""), "");
-            this.answersText[2].Text = new Regex(@"&[^;]+;").Replace(incorrectAnswer2.Replace("&quot;", "\""), "");
-            this.answersText[3].Text = new Regex(@"&[^;]+;").Replace(incorrectAnswer3.Replace("&quot;", "\""), "");
+            this.answersText[0].Text = this.ConvertText(correctAnswer);
+            this.answersText[1].Text = this.ConvertText(incorrectAnswer1);
+            this.answersText[2].Text = this.ConvertText(incorrectAnswer2);
+            this.answersText[3].Text = this.ConvertText(incorrectAnswer3);
 
             if(this.AnswerA_Text.Text == correctAnswer)
                 this.correctAnswerImage = this.AnswerA_Image;
@@ -172,6 +255,10 @@ namespace VPet.Plugin.FunGames
                 this.correctAnswerImage = this.AnswerC_Image;
             else if (this.AnswerD_Text.Text == correctAnswer)
                 this.correctAnswerImage = this.AnswerD_Image;
+        }
+
+        private string ConvertText(string text) {
+            return new Regex(@"&[^;]+;").Replace(text.Replace("&quot;", "\""), "").Translate().Replace("&!", "#");
         }
 
         private string WrapText(string text)
@@ -458,5 +545,15 @@ namespace VPet.Plugin.FunGames
 
             return randomList;
         }
+    }
+    public class Question
+    {
+        public int tagId { get; set; }
+        public string difficulty { get; set; }
+        public string question { get; set; }
+        public string correct_answer { get; set;}
+        public string incorrect_answer_1 { get; set; }
+        public string incorrect_answer_2 { get; set; }
+        public string incorrect_answer_3 { get; set; }
     }
 }

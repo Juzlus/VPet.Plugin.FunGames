@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-3-1237775776
+6-676859823
+1473199579
+10-100656301
+19-194628169
+Display\HangmanBoard.xaml;Display\MillionaireBoard.xaml;Display\MinesweeperBoard.xaml;Display\TicTacToeBoard.xaml;Display\petBoard.xaml;winSettings.xaml;
 
-7196250432
-17-128223904
-Display\CookingBoard.xaml;Display\HangmanBoard.xaml;Display\TicTacToeBoard.xaml;
-
-True
+False
 

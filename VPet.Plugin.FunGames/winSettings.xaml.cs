@@ -143,10 +143,18 @@ namespace VPet.Plugin.FunGames
 
                     if (name == "song")
                         this.Mil_SongEnbaled.IsChecked = bool.Parse(value);
-                    else if (name == "difficulty")
-                        this.Difficulty_mil.SelectedIndex = value == "easy" ? 0 : value == "medium" ? 1 : 2;
+                    else if (name == "difficulty") {
+                        int val = 0;
+                        if(value == "easy") val = 1;
+                        if (value == "medium") val = 2;
+                        if (value == "hard") val = 3;
+                        if (value == "real") val = 4;
+                        this.Difficulty_mil.SelectedIndex = val;
+                    }
                     else if (name == "category")
                         this.Category_mil.SelectedIndex = value == "0" ? 0 : int.Parse(value) - 8;
+                    else if (name == "database")
+                        this.Databases_mil.SelectedIndex = int.Parse(value);
                     else if (name == "chance_win")
                         this.Chance_mil_win.Value = double.Parse(value);
                     else if (name == "chance_loss")
@@ -166,8 +174,9 @@ namespace VPet.Plugin.FunGames
         {
             string content =
                 "song=" + this.Mil_SongEnbaled.IsChecked.ToString() +
-                "\ndifficulty=" + (this.Difficulty_mil.SelectedIndex == 0 ? "easy" : this.Difficulty_mil.SelectedIndex == 1 ? "medium" : "hard") +
+                "\ndifficulty=" + this.Difficulty_mil.SelectedIndex.ToString().Replace("0", "any").Replace("1", "easy").Replace("2", "normal").Replace("3", "hard").Replace("4", "real") +
                 "\ncategory=" + (this.Category_mil.SelectedIndex == 0 ? 0 : 8 + this.Category_mil.SelectedIndex) +
+                "\ndatabase=" + this.Databases_mil.SelectedIndex.ToString() +
                 "\nchance_win=" + this.Chance_mil_win.Value.ToString() +
                 "\nchance_loss=" + this.Chance_mil_loss.Value.ToString() +
                 "\nchance_start=" + this.Chance_mil_start.Value.ToString() +

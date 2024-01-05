@@ -48,7 +48,7 @@ namespace VPet.Plugin.FunGames
             MenuItem buttonsMenu = this.CreateMenuItem("Fun Games");
 
             MenuItem SettingButton = this.CreateMenuItem("Settings", 0);
-            MenuItem TicTacToeButton = this.CreateMenuItem("Tic Tac Toe", 1);
+            MenuItem TicTacToeButton = this.CreateMenuItem("Tic-Tac-Toe", 1);
             MenuItem HangmanButton = this.CreateMenuItem("Hangman", 2);
             MenuItem millionaireButton = this.CreateMenuItem("Millionaire", 3);
             MenuItem minesweeperButton = this.CreateMenuItem("Minesweeper", 4);
