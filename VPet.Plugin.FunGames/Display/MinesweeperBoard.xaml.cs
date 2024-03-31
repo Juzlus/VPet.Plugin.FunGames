@@ -277,7 +277,7 @@ namespace VPet.Plugin.FunGames
 
                 try
                 {
-                    IGraph graph = this.games.MW.Main.Core.Graph.FindGraph("fungames.exploding", GraphInfo.AnimatType.Single, GameSave.ModeType.Happy);
+                    IGraph graph = this.games.MW.Main.Core.Graph.FindGraph("fungames.exploding", GraphInfo.AnimatType.Single, IGameSave.ModeType.Happy);
                     if (graph == null) return;
                     this.games.petBoard.SetVisibility(false);
                     this.games.MW.Main.Display(graph, (Action)(() => {

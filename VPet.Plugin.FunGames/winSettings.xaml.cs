@@ -27,7 +27,7 @@ namespace VPet.Plugin.FunGames
         {
             string path = this.games.path + "\\config\\Hangman_custom.txt";
             if (!File.Exists(path)) return;
-            Process.Start(path);
+            Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
         }
 
         private void Window_Closed(object sender, EventArgs e) => this.games.settingsPanel = (winSettings) null;

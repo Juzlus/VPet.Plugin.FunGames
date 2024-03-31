@@ -190,7 +190,7 @@ namespace VPet.Plugin.FunGames
         {
             try
             {
-                IGraph graph = this.MW.Main.Core.Graph.FindGraph(graphName, animatType, GameSave.ModeType.Happy);
+                IGraph graph = this.MW.Main.Core.Graph.FindGraph(graphName, animatType, IGameSave.ModeType.Happy);
                 if (graph == null) return;
                 this.MW.Main.Display(graph, (Action)(() => {
                     this.MW.Main.DisplayToNomal();

@@ -1,0 +1,93 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\PCv2\\Desktop\\VPet-main\\VPet.Plugin.FunGames\\VPet.Plugin.FunGames.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\PCv2\\Desktop\\VPet-main\\VPet.Plugin.FunGames\\VPet.Plugin.FunGames.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\PCv2\\Desktop\\VPet-main\\VPet.Plugin.FunGames\\VPet.Plugin.FunGames.csproj",
+        "projectName": "VPet.Plugin.FunGames",
+        "projectPath": "C:\\Users\\PCv2\\Desktop\\VPet-main\\VPet.Plugin.FunGames\\VPet.Plugin.FunGames.csproj",
+        "packagesPath": "C:\\Users\\PCv2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PCv2\\Desktop\\VPet-main\\VPet.Plugin.FunGames\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\PCv2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows7.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Panuon.WPF": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Panuon.WPF.UI": {
+              "target": "Package",
+              "version": "[1.2.1.1, )"
+            },
+            "VPet-Simulator.Core": {
+              "target": "Package",
+              "version": "[1.1.0.1, )"
+            },
+            "VPet-Simulator.Windows.Interface": {
+              "target": "Package",
+              "version": "[1.1.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
