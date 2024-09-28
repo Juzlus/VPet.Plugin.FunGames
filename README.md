@@ -3,7 +3,9 @@
 
 This is a modification to [VPET Simulator](https://store.steampowered.com/app/1920960/VPet/) that adds new games such: Tic-Tac-Toe, Hangman, Millionaire, Minesweeper.
 
- [Page on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3027915926). _,,Dive into the world of classic games.''_
+_,,Dive into the world of classic games.''_
+
+ [Page on Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3027915926). 
 
 ## ✨ Usage (NuGet package)
 - [LinePutScript](https://github.com/LorisYounger/LinePutScript?tab=readme-ov-file)
