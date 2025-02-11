@@ -1,0 +1,73 @@
+
+FunGames - Settings#趣味游戏 - 设置:|
+Difficulty#难度:|
+Chance for a message#消息触发概率:|
+Win#胜利:|
+Lose#失败:|
+Draw#平局:|
+Start#开始:|
+Wait#等待:|
+Think#思考:|
+Easy (Random play)#简单（随机玩法）:|
+Medium (Defensive play)#中等（防御性玩法）:|
+Hard (Offensive play)#困难（进攻性玩法）:|
+What is the chance of the message | 0 = never, 1 = always#消息触发概率 | 0 = 从不，1 = 总是:|
+Save#保存:|
+Lives#生命值:|
+Enable#启用:|
+Active#激活:|
+Custom#自定义:|
+Only custom words#仅使用自定义词库:|
+Custom words#自定义词库:|
+Correct char#正确字符:|
+Incorrect char#错误字符:|
+Open file#打开文件:|
+Song#歌曲:|
+Database#数据库:|
+Category#分类:|
+Opentdb (3500+) - Online#Opentdb（3500+）- 在线:|
+Opentdb snapshot (3493) - Offline#Opentdb快照（3493）- 离线:|
+Any#任意:|
+Easy#简单:|
+Medium#中等:|
+Hard#困难:|
+Real#真实模式:|
+The difficulty level increases every 5 questions.#每答对5题后难度提升:|
+Any Category#任意分类:|
+General Knowledge#常识:|
+Books#书籍:|
+Film#电影:|
+Music#音乐:|
+Musicals and Theatres#音乐剧与戏剧:|
+Television#电视:|
+Video Games#电子游戏:|
+Board Games#桌游:|
+Science and Nature#科学与自然:|
+Science: Computers#科学：计算机:|
+Science: Mathematics#科学：数学:|
+Mythology#神话:|
+Sports#体育:|
+Geography#地理:|
+History#历史:|
+Politics#政治:|
+Art#艺术:|
+Celebrities#名人:|
+Animals#动物:|
+Vehicles#载具:|
+Comics#漫画:|
+Science: Gadgets#科学：电子设备:|
+Japanese Anime and Manga#日本动漫与漫画:|
+Cartoon and Animations#卡通与动画:|
+Rows#行数:|
+Cols#列数:|
+Mines#地雷数:|
+Mark (?)#标记（？）:|
+Tick (timer) sound#滴答声（计时器）:|
+Cell size#单元格大小:|
+Beginner (9x9)#新手（9x9）:|
+Medium (16x16)#中等（16x16）:|
+Hard (30x16)#困难（30x16）:|
+Huge (30x24)#超大（30x24）:|
+Extreme (30x30)#极限（30x30）:|
+An active game has been detected!\nDo you still want to overwrite the settings?#检测到进行中的游戏！\n仍要覆盖设置吗？:|
+Restart the board#重新开始棋盘:|
