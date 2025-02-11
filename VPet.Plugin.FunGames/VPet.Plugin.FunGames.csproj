@@ -19,63 +19,161 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Font\CHAWP.ttf" />
-    <Resource Include="Image\BoardTicTacToe.png" />
+    <Resource Include="Image\BoardTicTacToe.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\Millionaire_line.png" />
-    <Resource Include="Image\Millionaire_question.png" />
+    <Resource Include="Image\Millionaire_line.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_question.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\Millionaire_answer.png" />
-    <Resource Include="Image\Millionaire_answer_correct.png" />
-    <Resource Include="Image\Millionaire_answer_selected.png" />
+    <Resource Include="Image\Millionaire_answer.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_answer_correct.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_answer_selected.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\Minesweeper_petDesk.png" />
-    <Resource Include="Image\Minesweeper_exit.png" />
-    <Resource Include="Image\Minesweeper_n_-.png" />
-    <Resource Include="Image\Minesweeper_n_0.png" />
-    <Resource Include="Image\Minesweeper_n_1.png" />
-    <Resource Include="Image\Minesweeper_n_2.png" />
-    <Resource Include="Image\Minesweeper_n_3.png" />
-    <Resource Include="Image\Minesweeper_n_4.png" />
-    <Resource Include="Image\Minesweeper_n_5.png" />
-    <Resource Include="Image\Minesweeper_n_6.png" />
-    <Resource Include="Image\Minesweeper_n_7.png" />
-    <Resource Include="Image\Minesweeper_n_8.png" />
-    <Resource Include="Image\Minesweeper_n_9.png" />
-    <Resource Include="Image\Minesweeper_cell_flag.png" />
-    <Resource Include="Image\Minesweeper_restart_default.png" />
-    <Resource Include="Image\Minesweeper_restart_lose.png" />
-    <Resource Include="Image\Minesweeper_restart_win.png" />
-    <Resource Include="Image\Minesweeper_cell_0.png" />
-    <Resource Include="Image\Minesweeper_cell_1.png" />
-    <Resource Include="Image\Minesweeper_cell_2.png" />
-    <Resource Include="Image\Minesweeper_cell_3.png" />
-    <Resource Include="Image\Minesweeper_cell_4.png" />
-    <Resource Include="Image\Minesweeper_cell_5.png" />
-    <Resource Include="Image\Minesweeper_cell_6.png" />
-    <Resource Include="Image\Minesweeper_cell_7.png" />
-    <Resource Include="Image\Minesweeper_cell_8.png" />
-    <Resource Include="Image\Minesweeper_cell_bomb.png" />
-    <Resource Include="Image\Minesweeper_cell_bomb2.png" />
-    <Resource Include="Image\Minesweeper_cell_bomb3.png" />
-    <Resource Include="Image\Minesweeper_cell_unknown.png" />
-    <Resource Include="Image\Minesweeper_cell.png" />
-    <Resource Include="Image\Millionaire_switch_used.png" />
-    <Resource Include="Image\Millionaire_50_50.png" />
-    <Resource Include="Image\Millionaire_askHost.png" />
-    <Resource Include="Image\Millionaire_switch.png" />
-    <Resource Include="Image\Millionaire_answer_disabled.png" />
-    <Resource Include="Image\Millionaire_prize.png" />
-    <Resource Include="Image\Millionaire_50_50_used.png" />
-    <Resource Include="Image\Millionaire_askHost_used.png" />
-    <Resource Include="Image\Millionaire_petDesk.png" />
-    <Content Include="Image\Millionaire_prizes.png" />
+    <Resource Include="Image\Minesweeper_petDesk.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_exit.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_n_-.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_n_0.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_n_1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_n_2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_n_3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_n_4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_n_5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_n_6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_n_7.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_n_8.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_n_9.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_flag.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_restart_default.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_restart_lose.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_restart_win.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_0.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_7.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_8.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_bomb.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_bomb2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_bomb3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell_unknown.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Minesweeper_cell.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_switch_used.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_50_50.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_askHost.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_switch.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_answer_disabled.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_prize.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_50_50_used.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_askHost_used.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_petDesk.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\Millionaire_prizes.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\prizeBoard-small.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Display\CookingBoard.xaml.cs" />
     <Compile Remove="Display\TetrisBoard.xaml.cs" />
+    <None Remove="Image\prizeBoard-small.png" />
     <Page Remove="Display\CookingBoard.xaml" />
     <Page Remove="Display\TetrisBoard.xaml" />
   </ItemGroup>
@@ -85,5 +183,8 @@
     <PackageReference Include="Panuon.WPF.UI" Version="1.2.1.1" />
     <PackageReference Include="VPet-Simulator.Core" Version="1.1.0.1" />
     <PackageReference Include="VPet-Simulator.Windows.Interface" Version="1.1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Image\3D Objects\" />
   </ItemGroup>
 </Project>

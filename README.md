@@ -15,7 +15,9 @@ _,,Dive into the world of classic games.''_
 - [Panuon.WPF.UI](https://github.com/Panuon/Panuon.WPF.UI)
 - [VPet-Simulator.Core](https://github.com/LorisYounger/VPet)
 - [VPet-Simulator.Windows.Interface](https://github.com/LorisYounger/VPet)
-  
+⠀
+- The questions for the ‘Millionaires’ mini-game come from [opentdb](opentdb.com)
+
 ## 🔥 Screenshots
 
 ![Menu Panel](https://steamuserimages-a.akamaihd.net/ugc/2079031399340330078/1951204B092E6660F32346735FFF1AEF2619B76C/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true)
@@ -26,6 +28,10 @@ _,,Dive into the world of classic games.''_
 
 ## 📋 Changelog
 
+### v1.0.6
+- New language added: Chinese by [@Traveler07](https://github.com/Traveler07)
+- Decrease the volume of all sound files
+- Fixed the answer check for translated questions in the "Millionaire" mini-game.
 ### v1.0.5
 - Offline mode for the millionaire game
 ### v1.0.4

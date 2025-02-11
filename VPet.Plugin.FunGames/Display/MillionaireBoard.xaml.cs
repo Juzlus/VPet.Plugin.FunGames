@@ -242,7 +242,8 @@ namespace VPet.Plugin.FunGames
 
             this.answersText = ShuffleList(new List<TextBlock> { this.AnswerA_Text, this.AnswerB_Text, this.AnswerC_Text, this.AnswerD_Text });
 
-            this.answersText[0].Text = this.ConvertText(correctAnswer);
+            correctAnswer = this.ConvertText(correctAnswer);
+            this.answersText[0].Text = correctAnswer;
             this.answersText[1].Text = this.ConvertText(incorrectAnswer1);
             this.answersText[2].Text = this.ConvertText(incorrectAnswer2);
             this.answersText[3].Text = this.ConvertText(incorrectAnswer3);
@@ -253,7 +254,7 @@ namespace VPet.Plugin.FunGames
                 this.correctAnswerImage = this.AnswerB_Image;
             else if (this.AnswerC_Text.Text == correctAnswer)
                 this.correctAnswerImage = this.AnswerC_Image;
-            else if (this.AnswerD_Text.Text == correctAnswer)
+            else
                 this.correctAnswerImage = this.AnswerD_Image;
         }
 
